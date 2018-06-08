@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load staticfiles %}
+        <!-- Citation: bootstrat.css library from Bootstrap -->     
+        <script src="{% static 'pollution_map/jquery-1.11.1.js' %}" type="text/javascript"></script>
+        <script src="{% static 'pollution_map/bootstrap.bundle.js' %}" type="text/javascript"></script>
+        <script src="{% static 'pollution_map/pollution_map.js' %}" type="text/javascript"></script>
+        <link href="{% static 'pollution_map/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    
+        <link href="{% static 'pollution_map/base.css' %}" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'pollution_map/images/cmu_icon.png' %}" />
+        <title> {% block title %} Pittsburgh Pollution Map {% endblock %} </title>
+    </head>
+
+    <body>
+        <div class="container-fluid bg-white">
+            <div class="row">
+                <div class="col-lg-6 dial_frame">
+                    <img src="{% static 'pollution_map/images/white_bg.png' %}" class="white_bg">
+                    <div class = "pm">
+                        Particular Matter: PM
+                        <sub>
+                            2.5
+                        </sub>
+                    </div>
+                    <div class="ozone">
+                        Ozone: O
+                        <sub>
+                            3
+                        </sub>
+                    </div>
+                    <div></div>
+                    <img src="{% static 'pollution_map/images/dial.png' %}" class="pm25_dial_img">
+                    <img src="{% static 'pollution_map/images/dial.png' %}" class="o3_dial_img">
+                    <div class="pm25_dial">
+                        <img src="{% static 'pollution_map/images/red_arrow.png' %}" class="red_arrow" id="pm25_arrow">
+                        <img src="{% static 'pollution_map/images/black_circle.png' %}" class="black_circle">
+                    </div>
+                    <div class="o3_dial">
+                        <img src="{% static 'pollution_map/images/blue_arrow.png' %}" class="blue_arrow" id="o3_arrow">
+                        <img src="{% static 'pollution_map/images/black_circle.png' %}" class="black_circle">
+                    </div>  
+                </div>
+
+                <div class="col-lg-6">
+                    <div  style="z-index: 0; right:0vh; top: 0vh; flex-wrap: wrap; position: absolute;">
+                        <div class="box">
+                            Current Displayed Pollutant
+                        </div>
+                        <div class="box">
+                            <table style="text-align: center; padding: 0; width: 100%; height:100%;">
+                                <tr>
+                                    <td class="checkbox">
+                                        <input id="checkBox" type="checkbox">
+                                    </td>
+                                    <td class="checkbox">
+                                        <div>
+                                            PM
+                                            <sub>2.5
+                                            </sub>
+                                        </div>
+                                    </td>
+                                    <td class="checkbox">
+                                        <input id="checkBox" type="checkbox">
+                                    </td>
+                                    <td class="checkbox">
+                                        <div>
+                                            O
+                                            <sub>
+                                                3
+                                            </sub>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {% block layer %}
+                    {% endblock %}
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-lg icon-cyan">
+                    
+                </div>
+                <div class="col"></div>              
+            </div>
+        </div>
+        <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2">
+    </body>
+</html>

@@ -1,0 +1,106 @@
+.pm {
+    font-size: 2vh;
+    flex-wrap: wrap;
+    position: absolute;
+    left:3vh;
+    top:0vh;
+}
+
+.ozone {
+    font-size: 2vh;
+    flex-wrap: wrap;
+    position: absolute;
+    left:50vh;
+    top:0vh;
+}
+
+.checkbox {
+    width: 10vh;
+    top: 2vh;
+    font-size:2vh;
+    text-align: center;
+}
+
+.box {
+    flex-wrap: wrap;
+    width: 60vh;
+    height: 8vh;
+    font-size:3vh;
+    border-style: solid;
+    border-width: 1vh;
+    padding:0.5vh;
+    text-align: center;
+    border-color: black;
+    right: 0vh;
+    z-index: -1;
+}
+
+.blue_arrow {
+    width: 4vh;
+    height: 10vh;
+    position: absolute;
+    left:10.5vh;
+    bottom: 2.5vh;
+    transform-origin: bottom; 
+}
+
+.red_arrow {
+    width: 4vh;
+    height: 10vh;
+    position: absolute;
+    left:10.5vh;
+    bottom: 2.5vh;
+    transform-origin: bottom;
+}
+
+.black_circle {
+    width: 5vh;
+    height: 5vh;
+    position: absolute;
+    left:10vh;
+    bottom: 0vh;
+}
+
+.pm25_dial {
+    width: 25vh;
+    height: 15vh;
+    position: absolute;
+    left:2vh;
+    top:3.5vh;
+}
+
+.o3_dial {
+    width: 25vh;
+    height: 15vh;
+    position: absolute;
+    left:42vh;
+    top:3.5vh;
+}
+
+.pm25_dial_img {
+    width: 25vh;
+    height: 15vh;
+    position: absolute;
+    left:2vh;
+    top:3.5vh;
+}
+
+.o3_dial_img {
+    width: 25vh;
+    height: 15vh;
+    position: absolute;
+    left:42vh;
+    top:3.5vh;
+}
+
+.dial_frame {
+    z-index:1;
+    background-color: white;
+    backface-visibility: visible;
+}
+
+.white_bg {
+    width: 70vh;
+    padding-top: 0;
+    padding-left: 0;
+}
