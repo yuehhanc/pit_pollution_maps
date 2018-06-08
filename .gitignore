@@ -1,0 +1,8 @@
+# .pyc file
+*.pyc
+
+# DS store
+*.DS_Store
+
+# .DS_Store
+*db.sqlite3
