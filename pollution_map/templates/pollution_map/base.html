@@ -15,11 +15,15 @@
     </head>
 
     <body>
-        <div class="container-fluid bg-white">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 dial_frame">
+                <div class="col-lg-4" style="height: 17vh; padding: 25px;">
+                    <h1 style="text-align: center">Pitt Pollution</h1>
+                </div>
+                <div class="col-lg-3 dial_frame">
+                    
                     <img src="{% static 'pollution_map/images/white_bg.png' %}" class="white_bg">
-                    <div class = "pm">
+                    <!-- <div class = "pm">
                         Particular Matter: PM
                         <sub>
                             2.5
@@ -30,21 +34,21 @@
                         <sub>
                             3
                         </sub>
-                    </div>
+                    </div> -->
                     <div></div>
-                    <img src="{% static 'pollution_map/images/dial.png' %}" class="pm25_dial_img">
-                    <img src="{% static 'pollution_map/images/dial.png' %}" class="o3_dial_img">
                     <div class="pm25_dial">
+                        <img src="{% static 'pollution_map/images/dial.png' %}" class="pm25_dial_img">
                         <img src="{% static 'pollution_map/images/red_arrow.png' %}" class="red_arrow" id="pm25_arrow">
                         <img src="{% static 'pollution_map/images/black_circle.png' %}" class="black_circle">
                     </div>
-                    <div class="o3_dial">
+                    <!-- <div class="o3_dial">
+                        <img src="{% static 'pollution_map/images/dial.png' %}" class="o3_dial_img">
                         <img src="{% static 'pollution_map/images/blue_arrow.png' %}" class="blue_arrow" id="o3_arrow">
                         <img src="{% static 'pollution_map/images/black_circle.png' %}" class="black_circle">
-                    </div>  
+                    </div>   -->
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div  style="z-index: 0; right:0vh; top: 0vh; flex-wrap: wrap; position: absolute;">
                         <div class="box">
                             Current Displayed Pollutant
@@ -53,7 +57,7 @@
                             <table style="text-align: center; padding: 0; width: 100%; height:100%;">
                                 <tr>
                                     <td class="checkbox">
-                                        <input id="checkBox" type="checkbox">
+                                        <input id="checkBox" type="radio" name="pollutant" checked="checked">
                                     </td>
                                     <td class="checkbox">
                                         <div>
@@ -63,7 +67,7 @@
                                         </div>
                                     </td>
                                     <td class="checkbox">
-                                        <input id="checkBox" type="checkbox">
+                                        <input id="checkBox" name="pollutant" type="radio">
                                     </td>
                                     <td class="checkbox">
                                         <div>
@@ -88,6 +92,10 @@
                 <div class="col"></div>              
             </div>
         </div>
-        <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2">
+        {% block map %}
+        <!-- <iframe src='{% url "map" %}' onclick="getCursor(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2"></iframe> -->
+        <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2" >
+        <!-- style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2" -->
+        {% endblock %}
     </body>
 </html>

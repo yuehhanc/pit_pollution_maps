@@ -64,9 +64,12 @@
 .pm25_dial {
     width: 25vh;
     height: 15vh;
-    position: absolute;
+    /*position: absolute;
     left:2vh;
-    top:3.5vh;
+    top:3.5vh;*/
+    position: absolute;
+    right: 0;
+    top: 3.4vh;
 }
 
 .o3_dial {
@@ -80,7 +83,7 @@
 .pm25_dial_img {
     width: 25vh;
     height: 15vh;
-    position: absolute;
+    /*position: absolute;*/
     left:2vh;
     top:3.5vh;
 }
@@ -100,7 +103,43 @@
 }
 
 .white_bg {
-    width: 70vh;
+    width: 35vh;
+    height: 17vh;
     padding-top: 0;
     padding-left: 0;
+}
+
+.white_bg_l {
+    width: 70vh;
+    height: 17vh;
+    padding-top: 0;
+    padding-left: 0;
+}
+
+input[type='radio']:after {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 5px solid black;
+}
+
+input[type='radio']:checked:after {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: black;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 5px solid black;
 }
