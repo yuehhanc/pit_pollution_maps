@@ -25,3 +25,15 @@ def get_cursor_json(request):
         pass
     coord = [lat, lon]
     return HttpResponse(coord, content_type='application/json')
+
+def past_data(request):
+    context = {}
+    return render(request, 'pollution_map/home.html', context)
+
+def download(request):
+    context = {}
+    return render(request, 'pollution_map/home.html', context)
+
+def contact(request):
+    context = {}
+    return render(request, 'pollution_map/home.html', context)

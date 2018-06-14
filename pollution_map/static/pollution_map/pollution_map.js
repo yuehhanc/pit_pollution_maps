@@ -31,6 +31,32 @@ function processData(allText) {
     }
 }
 
+function o3RadioChecked() {
+    var isPM25Arrow = document.getElementById("pm25_arrow");
+    if (isPM25Arrow != null) {
+        document.getElementById("arrow").innerHTML = "";
+    }
+    var isO3Arrow = document.getElementById("o3_arrow");
+    if (isO3Arrow == null) {
+        var newArrow = document.createElement("div");
+        newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
+        document.getElementById("arrow").appendChild(newArrow);
+    }
+}
+
+function pm25RadioChecked() {
+    var isO3Arrow = document.getElementById("o3_arrow");
+    if (isO3Arrow != null) {
+        document.getElementById("arrow").innerHTML = "";
+    }
+    var isPM25Arrow = document.getElementById("pm25_arrow");
+    if (isPM25Arrow == null) {
+        var newArrow = document.createElement("div");
+        newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="blue_arrow" id="pm25_arrow">';
+        document.getElementById("arrow").appendChild(newArrow);
+    }
+}
+
 // function getCursor(event) {
 //     var x = event.clientX;
 //     var y = event.clientY;
@@ -100,9 +126,12 @@ function processData(allText) {
 function searchPoint(event) {
     var x = event.clientX;
     var y = event.clientY;
-    var lat = 40.520537 - 0.00025509*(x-129);
-    var lon = -80.229309 + 0.00032544*(y-1440);
-    // console.log("Latitude: " + lat + ", Longitude:" + lon);
+    var map = document.getElementById("map");
+    console.log("x: " + x + ", y:" + y);
+    // coord: top-left:40.38, -80.12 bottom-right: 40.48, -79.83
+    var lat = 40.48 - (0.1/(1+map.clientHeight))*(y-129);
+    var lon = -80.12 + (0.29/(1+map.clientWidth))*x;
+    console.log("Latitude: " + lat + ", Longitude:" + lon);
     var dist = 2147483647;
     var index = 0;
     for (i = 0; i < latitude.length; i++) {
@@ -115,11 +144,15 @@ function searchPoint(event) {
         }
     }
     // console.log("CO: " + CO[index]);
-    // console.log("O3: " + O3[index]); //max: 38, min:22, avg: 30
-    // console.log("PM2.5: " + PM025[index]); //max:14, min:2, avg: 8
+    // console.log("O3: " + O3[index]); //max: 38, min:22, avg: 30, mean: 25.8896573, std=12.2525487
+    // console.log("PM2.5: " + PM025[index]); //max:14, min:2, avg: 8, mean: 9.14702301, std=5.67227436
+    var meanO3 = 25.8896573;
+    var stdO3 = 12.2525487;
+    var meanPM25 = 9.14702301;
+    var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - 22)*180/16.0;
-    var degPM025 =  (PM025[index] - 2)*180/10.0;
+    var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
+    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
     if (degO3 > 180) {
         degO3 = 180;
     }
@@ -132,6 +165,8 @@ function searchPoint(event) {
     if (degPM025 < 0) {
         degPM025 = 0;
     }
+    // console.log("PM25: " + degPM025 + ", " + PM025[index]);
+    // console.log("O3: " + degO3 + ", " + O3[index]);
     
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
