@@ -17,29 +17,34 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-1 dropdown" style="z-index: 3">
-                    <img class="btn menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                    <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
-                        <li>
-                            <form method="get" action="{% url 'past_data' %}"> 
-                                <input type="submit" class='dropdown-item' value="Past Data" />
-                                <input type="hidden" name="id" value={{id}} />
-                            </form>
-                        </li>
-                        <li>
-                            <form method="get" action="{% url 'download' %}"> 
-                                <input type="submit" class='dropdown-item' value="Download" />
-                            </form>
-                        </li>
-                        <li>
-                            <form method="get" action="{% url 'contact' %}"> 
-                                <input type="submit" class='dropdown-item' value="Contact" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3" style="height: 17vh; padding: 25px;">
-                    <h1 style="text-align: center">Pitt Pollution</h1>
+                <div class="col-lg-4">
+                    <div class="dropdown" style="z-index: 3">
+                        <img class="btn btn-secondary menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
+                            <li>
+                                <form method="get" action="{% url 'past_data' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Past Data" />
+                                    <input type="hidden" name="id" value={{id}} />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'download' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Download" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'contact' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Contact" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="text-align: left; font-size: 46px; font-weight: bold; position: absolute; left: 7vw;">
+                        Pitt Pollution
+                    </div>
+                    <p style="top: 7vh; left: 7vw; position: absolute; font-size: 14px;">
+                        Please click around the map to find pollution information. You can choose which pollutant you view in the menu to the right.
+                    </p>
                 </div>
                 <div class="col-lg-3 dial_frame">
                     
@@ -79,25 +84,20 @@
                         <div class="box">
                             <table style="text-align: center; padding: 0; width: 100%; height:100%;">
                                 <tr>
-                                    <td class="checkbox">
+                                    <td>
                                         <input id="checkBox" type="radio" name="pollutant" checked="checked" id="pm25radio" onclick="pm25RadioChecked()">
                                     </td>
                                     <td class="checkbox">
                                         <div>
-                                            PM
-                                            <sub>2.5
-                                            </sub>
+                                            Particulate Matter
                                         </div>
                                     </td>
-                                    <td class="checkbox">
+                                    <td>
                                         <input id="checkBox" name="pollutant" type="radio" id="o3radio" onclick="o3RadioChecked()">
                                     </td>
                                     <td class="checkbox">
                                         <div>
-                                            O
-                                            <sub>
-                                                3
-                                            </sub>
+                                            Ozone
                                         </div>
                                     </td>
                                 </tr>
@@ -117,7 +117,10 @@
         </div>
         {% block map %}
         <!-- <iframe src='{% url "map" %}' onclick="getCursor(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2"></iframe> -->
-        <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2" id="map">
+        <div id="map_area">
+            <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2" id="map">
+            <div style="border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: 5vw; top: 30vh;" id="marker"></div>
+        </div>
         <!-- style="width: 100vw; height: 84vh; position: absolute; top: 16vh; z-index: 2" -->
         {% endblock %}
     </body>

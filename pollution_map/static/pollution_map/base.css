@@ -15,10 +15,10 @@
 }
 
 .checkbox {
-    width: 10vh;
+    width: 18vh;
     top: 2vh;
     font-size:2vh;
-    text-align: center;
+    text-align: left;
 }
 
 .box {
@@ -117,19 +117,20 @@
 }
 
 .menu {
-    width: 80px;
-    height:64px;
+    width: 40px;
+    height:32px;
     position: absolute;
-    top: 3vh;
-    left: 3vw;
+    top: 2.5vh;
+    left: 1vw;
+    flex-wrap: wrap;
 }
 
 input[type='radio']:after {
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
-    top: -2px;
-    left: -1px;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    top: -9.5px;
+    left: -9px;
     position: relative;
     background-color: #d1d3d1;
     content: '';
@@ -139,11 +140,11 @@ input[type='radio']:after {
 }
 
 input[type='radio']:checked:after {
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
-    top: -2px;
-    left: -1px;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    top: -9.5px;
+    left: -9px;
     position: relative;
     background-color: black;
     content: '';
