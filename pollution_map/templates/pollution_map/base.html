@@ -17,10 +17,8 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-1 dropdown">
-                    <!-- <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"> -->
-                        <img class="btn menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                    <!-- </button> -->
+                <div class="col-lg-1 dropdown" style="z-index: 3">
+                    <img class="btn menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                     <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
                         <li>
                             <form method="get" action="{% url 'past_data' %}"> 
