@@ -199,8 +199,9 @@ function searchPoint(event) {
     prev_degO3 = degO3;
 
     var map_area = document.getElementById("map_area");
-    document.getElementById("marker").remove();
-
+    if (document.getElementById("marker") != null) {
+        document.getElementById("marker").remove();
+    }
     map_area.innerHTML = map_area.innerHTML + '<div onclick="searchPoint(event)" style="border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
                           (x-8) + 'px; top: ' + (y-8) + 'px;" id="marker"></div>';
 }
