@@ -201,7 +201,7 @@ function searchPoint(event) {
     var map_area = document.getElementById("map_area");
     document.getElementById("marker").remove();
 
-    map_area.innerHTML = map_area.innerHTML + '<div style="border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
+    map_area.innerHTML = map_area.innerHTML + '<div onclick="searchPoint(event)" style="border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
                           (x-8) + 'px; top: ' + (y-8) + 'px;" id="marker"></div>';
 }
 
