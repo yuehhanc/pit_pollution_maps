@@ -123,14 +123,33 @@ function pm25RadioChecked() {
 //     prev_degO3 = degO3;
 // }
 
+function addGrids() {
+    //gcd(1440, 675) = 45
+    var map = document.getElementById("map");
+    var map_area = document.getElementById("map_area");
+    var trans = 0.1;
+    for (var i = 0; i < 100; i += 2) {
+        for (var j = 0; j < 84; j += 2) {
+            var newGrid = document.createElement("div");
+            newGrid.className = "layer";
+            newGrid.style.left = (i).toString() + "vw";
+            newGrid.style.top = (16 + j).toString() + "vh";
+            newGrid.style.background = "rgba(255,0,0," + trans.toString() +")";
+            map_area.appendChild(newGrid);
+        }
+    }
+
+
+}
+
 function searchPoint(event) {
     var x = event.clientX;
     var y = event.clientY;
     var map = document.getElementById("map");
     console.log("x: " + x + ", y:" + y);
-
+    // 1440 800
     // coord: top-left:40.38, -80.12 bottom-right: 40.48, -79.83
-    var lat = 40.48 - (0.1/(1+map.clientHeight))*(y-129);
+    var lat = 40.48 - (0.1/(1+map.clientHeight))*(y-129);//+1 to avoid zero division
     var lon = -80.12 + (0.29/(1+map.clientWidth))*x;
     console.log("Latitude: " + lat + ", Longitude:" + lon);
     var dist = 2147483647;
@@ -144,6 +163,7 @@ function searchPoint(event) {
             index = i;
         }
     }
+    console.log("Client Width: " + map.clientWidth + ", Client Height:" + map.clientHeight);
     // console.log("CO: " + CO[index]);
     // console.log("O3: " + O3[index]); //max: 38, min:22, avg: 30, mean: 25.8896573, std=12.2525487
     // console.log("PM2.5: " + PM025[index]); //max:14, min:2, avg: 8, mean: 9.14702301, std=5.67227436
@@ -212,4 +232,6 @@ function detectMobile() {
     }
 }
 
-window.onLoad = detectMobile;
+window.onload = function() {
+    addGrids();
+}

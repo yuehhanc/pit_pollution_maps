@@ -125,6 +125,24 @@
     flex-wrap: wrap;
 }
 
+.layer {
+    width: 2vw;
+    height: 2vh;
+    position: absolute;
+    z-index: 3;
+    transition: opacity 250ms;
+    visibility: visible;
+    opacity: 1;
+}
+
+.map {
+    width: 100vw;
+    height: 84vh;
+    position: absolute;
+    top: 16vh;
+    z-index: 2;
+}
+
 input[type='radio']:after {
     width: 32px;
     height: 32px;
