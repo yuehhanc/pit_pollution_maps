@@ -126,8 +126,8 @@
 }
 
 .layer {
-    width: 2vw;
-    height: 2vh;
+    width: 4vw;
+    height: 4vh;
     position: absolute;
     z-index: 3;
     transition: opacity 250ms;
@@ -141,6 +141,16 @@
     position: absolute;
     top: 16vh;
     z-index: 2;
+}
+
+.cursor {
+    z-index: 5;
+    border-color: yellow;
+    border-style: solid;
+    border-width: 6px;
+    width: 1.5vw;
+    height: 1.5vw;
+    position: absolute;
 }
 
 input[type='radio']:after {

@@ -5,13 +5,17 @@ var O3 = [];
 var PM025 = [];
 var prev_degO3 = 90;
 var prev_degPM025 = 90;
+var flag = 0; // 0: PM2.5, 1: O3
 
 $(document).ready(function() {
     $.ajax({
         type: "GET",
         url: "/static/pollution_map/Interpolated_Map.csv",
         dataType: "text",
-        success: function(data) {processData(data);}
+        success: function(data) {
+            processData(data);
+            addGrids(flag);
+        }
      });
 });
 
@@ -23,11 +27,11 @@ function processData(allText) {
 
     while (allTextLines.length) {
         var entries = allTextLines.shift().split(',');
-        latitude.push(entries.shift());
-        longitude.push(entries.shift());
-        CO.push(entries.shift());
-        O3.push(entries.shift());
-        PM025.push(entries.shift());
+        latitude.push(parseFloat(entries.shift()));
+        longitude.push(parseFloat(entries.shift()));
+        CO.push(parseFloat(entries.shift()));
+        O3.push(parseFloat(entries.shift()));
+        PM025.push(parseFloat(entries.shift()));
     }
 }
 
@@ -42,6 +46,8 @@ function o3RadioChecked() {
         newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
         document.getElementById("arrow").appendChild(newArrow);
     }
+    flag = 1;
+    addGrids(flag);
 }
 
 function pm25RadioChecked() {
@@ -55,6 +61,8 @@ function pm25RadioChecked() {
         newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="blue_arrow" id="pm25_arrow">';
         document.getElementById("arrow").appendChild(newArrow);
     }
+    flag = 0;
+    addGrids(flag);
 }
 
 // function getCursor(event) {
@@ -122,36 +130,129 @@ function pm25RadioChecked() {
 //     prev_degPM025 = degPM025;
 //     prev_degO3 = degO3;
 // }
-
-function addGrids() {
+var index4Avg = 0;
+function addGrids(flag) {
     //gcd(1440, 675) = 45
     var map = document.getElementById("map");
     var map_area = document.getElementById("map_area");
-    var trans = 0.1;
-    for (var i = 0; i < 100; i += 2) {
-        for (var j = 0; j < 84; j += 2) {
+    map_area.innerHTML = '<img src="static/pollution_map/images/pit_map.png" onclick="searchPoint(event)" class="map" id="map">';
+    for (var i = 0; i < 100; i += 4) {
+        for (var j = 0; j < 84; j += 4) {
             var newGrid = document.createElement("div");
+            var x = i;
+            var y = (16 + j);
+            var avg = assignAvg(x, y, 0, flag);
+            // console.log("avg: " + avg);
+            var multi = 1;
+            var meanO3 = 25.8896573;
+            var stdO3 = 12.2525487;
+            var meanPM25 = 9.14702301;
+            var stdPM25 = 5.67227436;
+            if (flag == 0) {
+                if (avg < (meanPM25-stdPM25)) {
+                    multi = 1;
+                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                    multi = 2.5;
+                } else if (avg < (meanPM25-0.25*stdPM25)) {
+                    multi = 3;
+                } else if (avg < meanPM25) {
+                    multi = 3.5;
+                } else if (avg < (meanPM25+0.25*stdPM25)) {
+                    multi = 4;
+                } else if (avg < (meanPM25+0.5*stdPM25)) {
+                    multi = 4.5;
+                } else if (avg < (meanPM25+stdPM25)) {
+                    multi = 5;
+                } else {
+                    multi = 6;
+                }
+            } else {
+                if (avg < (meanO3-stdO3)) {
+                    multi = 1;
+                } else if (avg < (meanO3-0.5*stdO3)) {
+                    multi = 2.5;
+                } else if (avg < (meanO3-0.25*stdO3)) {
+                    multi = 3;
+                } else if (avg < meanO3) {
+                    multi = 3.5;
+                } else if (avg < (meanO3+0.25*stdO3)) {
+                    multi = 4;
+                } else if (avg < (meanO3+0.5*stdO3)) {
+                    multi = 4.5;
+                } else if (avg < (meanO3+stdO3)) {
+                    multi = 5;
+                } else {
+                    multi = 6;
+                }
+            }
+
+            var trans = 0.1*multi;
             newGrid.className = "layer";
-            newGrid.style.left = (i).toString() + "vw";
-            newGrid.style.top = (16 + j).toString() + "vh";
-            newGrid.style.background = "rgba(255,0,0," + trans.toString() +")";
+            newGrid.style.left = x.toString() + "vw";
+            newGrid.style.top = y.toString() + "vh";
+            if (flag == 0) {
+                newGrid.style.background = "rgba(255,0,0," + trans.toString() +")";
+            } else {
+                newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
+            }
+            newGrid.onclick = searchPoint;
             map_area.appendChild(newGrid);
         }
     }
+    index4Avg = 0;
+}
 
+function assignAvg(x, y, index, flag) {
+    var sum = 0;
+    var count = 0;
+    var scaleX = map.clientWidth/100.0;
+    var scaleY = (map.clientHeight/0.84)/100.0;
+    var xMin = toLon(x*scaleX, map);
+    var yMax = toLat(y*scaleY, map);
+    var xMax = toLon((x+2)*scaleX, map);
+    var yMin = toLat((y+2)*scaleY, map);
+    // console.log("gridX: " + xMin + " gridY:" + yMin);
+    // console.log("gridXM: " + xMax + " gridYM:" + yMax);
+    for (i = index; i < latitude.length; i++) {
+        if (latitude[i] < yMax && latitude[i] >= yMin && longitude[i] < xMax && longitude[i] >= xMin) {
+            if (flag == 0) {
+                sum += PM025[i];
+            } else {
+                sum += O3[i];
+            }
+            count += 1;
+        }
+        if (longitude[i] >= xMax) {
+            index4Avg = i;
+            break;
+        }
+    }
+    // console.log("count: " + count + " sum: " + sum);
+    if (count > 0) {
+        return sum/count;
+    } else {
+        return 1;
+    }
+}
 
+function toLat(y, map) {
+    return 40.48 - (0.1/(1+map.clientHeight))*(y-129);
+}
+
+function toLon(x, map) {
+    return -80.12 + (0.29/(1+map.clientWidth))*x;
 }
 
 function searchPoint(event) {
     var x = event.clientX;
     var y = event.clientY;
     var map = document.getElementById("map");
-    console.log("x: " + x + ", y:" + y);
+    // console.log("x: " + x + ", y:" + y);
     // 1440 800
     // coord: top-left:40.38, -80.12 bottom-right: 40.48, -79.83
     var lat = 40.48 - (0.1/(1+map.clientHeight))*(y-129);//+1 to avoid zero division
     var lon = -80.12 + (0.29/(1+map.clientWidth))*x;
-    console.log("Latitude: " + lat + ", Longitude:" + lon);
+    // console.log("Latitude: " + lat + ", Longitude:" + lon);
     var dist = 2147483647;
     var index = 0;
     for (i = 0; i < latitude.length; i++) {
@@ -163,7 +264,7 @@ function searchPoint(event) {
             index = i;
         }
     }
-    console.log("Client Width: " + map.clientWidth + ", Client Height:" + map.clientHeight);
+    // console.log("Client Width: " + map.clientWidth + ", Client Height:" + map.clientHeight);
     // console.log("CO: " + CO[index]);
     // console.log("O3: " + O3[index]); //max: 38, min:22, avg: 30, mean: 25.8896573, std=12.2525487
     // console.log("PM2.5: " + PM025[index]); //max:14, min:2, avg: 8, mean: 9.14702301, std=5.67227436
@@ -222,8 +323,15 @@ function searchPoint(event) {
     if (document.getElementById("marker") != null) {
         document.getElementById("marker").remove();
     }
-    map_area.innerHTML = map_area.innerHTML + '<div onclick="searchPoint(event)" style="border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
-                          (x-8) + 'px; top: ' + (y-8) + 'px;" id="marker"></div>';
+    // map_area.innerHTML = map_area.innerHTML + '<div onclick="searchPoint(event)" style="z-index: 5; border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
+    //                       (x-8) + 'px; top: ' + (y-8) + 'px;" id="marker"></div>';
+    var newCursor = document.createElement("div");
+    newCursor.className = "cursor";
+    newCursor.id = "marker";
+    newCursor.style.left = (x-8).toString() + "px";
+    newCursor.style.top = (y-8).toString() + "px";
+    newCursor.onclick = searchPoint;
+    map_area.appendChild(newCursor);
 }
 
 function detectMobile() {
@@ -232,6 +340,6 @@ function detectMobile() {
     }
 }
 
-window.onload = function() {
-    addGrids();
-}
+// window.onload = function() {
+//     addGrids(flag);
+// }
