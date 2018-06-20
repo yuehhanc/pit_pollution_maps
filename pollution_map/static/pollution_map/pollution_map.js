@@ -135,7 +135,7 @@ function addGrids(flag) {
     //gcd(1440, 675) = 45
     var map = document.getElementById("map");
     var map_area = document.getElementById("map_area");
-    map_area.innerHTML = '<img src="static/pollution_map/images/pit_map.png" onclick="searchPoint(event)" class="map" id="map">';
+    map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map.png" onclick="searchPoint(event)" class="map" id="map">';
     for (var i = 0; i < 100; i += 4) {
         for (var j = 0; j < 84; j += 4) {
             var newGrid = document.createElement("div");
