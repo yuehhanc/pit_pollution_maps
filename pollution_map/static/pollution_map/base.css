@@ -127,7 +127,7 @@
 
 .layer {
     width: 4vw;
-    height: 4vh;
+    height: 6vh;
     position: absolute;
     z-index: 3;
     transition: opacity 250ms;
