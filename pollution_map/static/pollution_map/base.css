@@ -83,13 +83,13 @@
 .pm25_dial_img {
     /*width: 25vh;
     height: 15vh;*/
-    width: 30vh;
-    height: 30vh;
+    width: 27vh;
+    height: 27vh;
     position: absolute;
     /*left:2vh;
     top:3.5vh;*/
-    left:-2.5vh;
-    top:-2.5vh;
+    left:-1vh;
+    top:-1vh;
 }
 
 .o3_dial_img {
