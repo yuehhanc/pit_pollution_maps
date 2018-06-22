@@ -37,3 +37,7 @@ def download(request):
 def contact(request):
     context = {}
     return render(request, 'pollution_map/home.html', context)
+
+def about(request):
+    context = {}
+    return render(request, 'pollution_map/home.html', context)

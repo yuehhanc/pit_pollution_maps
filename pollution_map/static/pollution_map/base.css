@@ -81,11 +81,15 @@
 }
 
 .pm25_dial_img {
-    width: 25vh;
-    height: 15vh;
-    /*position: absolute;*/
-    left:2vh;
-    top:3.5vh;
+    /*width: 25vh;
+    height: 15vh;*/
+    width: 30vh;
+    height: 30vh;
+    position: absolute;
+    /*left:2vh;
+    top:3.5vh;*/
+    left:-2.5vh;
+    top:-2.5vh;
 }
 
 .o3_dial_img {
@@ -157,7 +161,7 @@ input[type='radio']:after {
     width: 32px;
     height: 32px;
     border-radius: 32px;
-    top: -9.5px;
+    top: -10.5px;
     left: -9px;
     position: relative;
     background-color: #d1d3d1;
@@ -171,7 +175,7 @@ input[type='radio']:checked:after {
     width: 32px;
     height: 32px;
     border-radius: 32px;
-    top: -9.5px;
+    top: -10.5px;
     left: -9px;
     position: relative;
     background-color: black;
