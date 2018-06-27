@@ -10,7 +10,7 @@ var flag = 0; // 0: PM2.5, 1: O3
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "/static/pollution_map/Interpolated_Map.csv",
+        url: "/static/pollution_map/Interpolated_Map.csv?q=" + Math.random(),
         dataType: "text",
         success: function(data) {
             processData(data);
@@ -339,7 +339,7 @@ function detectMobile() {
         window.location = "http://www.youtube.com";
     }
 }
-
+// window.location.reload(true);
 // window.onload = function() {
 //     addGrids(flag);
 // }

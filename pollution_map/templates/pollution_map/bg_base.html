@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+        {% load staticfiles %}
+        <!-- Citation: bootstrat.css library from Bootstrap -->     
+        <script src="{% static 'pollution_map/jquery-1.11.1.js' %}" type="text/javascript"></script>
+        <script src="{% static 'pollution_map/bootstrap.bundle.js' %}" type="text/javascript"></script>
+        <!-- <script src="{% static 'pollution_map/pollution_map.js' %}" type="text/javascript"></script> -->
+        <link href="{% static 'pollution_map/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    
+        <link href="{% static 'pollution_map/base.css' %}" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'pollution_map/images/cmu_icon.png' %}" />
+        <title> Pittsburgh Pollution Map </title>
+    </head>
+
+
+    <body>
+        <div class="container-fluid">
+            <div class="dropdown" style="z-index: 10">
+                <img class="btn btn-secondary menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
+                    <li>
+                        <form method="get" action="{% url 'home' %}"> 
+                            <input type="submit" class='dropdown-item' value="Home" />
+                        </form>
+                    </li>
+                    <li>
+                        <form method="get" action="{% url 'past_data' %}"> 
+                            <input type="submit" class='dropdown-item' value="Past Data" />
+                        </form>
+                    </li>
+                    <li>
+                        <form method="get" action="{% url 'download' %}"> 
+                            <input type="submit" class='dropdown-item' value="Download" />
+                        </form>
+                    </li>
+                    <li>
+                        <form method="get" action="{% url 'contact' %}"> 
+                            <input type="submit" class='dropdown-item' value="Contact" />
+                        </form>
+                    </li>
+                    <li>
+                        <form method="get" action="{% url 'about' %}"> 
+                            <input type="submit" class='dropdown-item' value="About" />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="row" style="background-image: url(/static/pollution_map/images/pollution_img2.jpg); text-align: center; color: white; height: 40vh; background-size: cover; font-size: 84px; display: block; padding: 10vh">
+                {% block title %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

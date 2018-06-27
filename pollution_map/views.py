@@ -28,16 +28,16 @@ def get_cursor_json(request):
 
 def past_data(request):
     context = {}
-    return render(request, 'pollution_map/home.html', context)
+    return render(request, 'pollution_map/past_data.html', context)
 
 def download(request):
     context = {}
-    return render(request, 'pollution_map/home.html', context)
+    return render(request, 'pollution_map/download.html', context)
 
 def contact(request):
     context = {}
-    return render(request, 'pollution_map/home.html', context)
+    return render(request, 'pollution_map/contact.html', context)
 
 def about(request):
     context = {}
-    return render(request, 'pollution_map/home.html', context)
+    return render(request, 'pollution_map/about.html', context)
