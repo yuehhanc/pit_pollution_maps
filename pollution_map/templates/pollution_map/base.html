@@ -24,6 +24,11 @@
                         <img class="btn btn-secondary menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
                             <li>
+                                <form method="get" action="{% url 'home' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Home" />
+                                </form>
+                            </li>
+                            <li>
                                 <form method="get" action="{% url 'past_data' %}"> 
                                     <input type="submit" class='dropdown-item' value="Past Data" />
                                     <input type="hidden" name="id" value={{id}} />
