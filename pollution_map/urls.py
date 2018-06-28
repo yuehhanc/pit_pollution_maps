@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^download$', views.download, name='download'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^about$', views.about, name='about'),
-    url(r'^get_cursor_json$', views.get_cursor_json, name='get_cursor_json')
+    url(r'^upload$', views.upload, name='upload'),
+    url(r'^get_cursor_json$', views.get_cursor_json, name='get_cursor_json'),
 ]

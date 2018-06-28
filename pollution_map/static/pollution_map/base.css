@@ -129,6 +129,13 @@
     flex-wrap: wrap;
 }
 
+.menu2 {
+    width: 40px;
+    height:32px;
+    margin: 10px;
+    /*flex-wrap: wrap;*/
+}
+
 .layer {
     width: 4vw;
     height: 6vh;
@@ -137,6 +144,22 @@
     transition: opacity 250ms;
     visibility: visible;
     opacity: 1;
+}
+
+.titleLayer {
+    width: 100vw;
+    height: 40vh;
+    position: absolute;
+    padding: 10vh;
+    left: 0vw;
+    z-index: 3;
+    transition: opacity 250ms;
+    visibility: visible;
+    opacity: 1;
+    text-align: center;
+    color: white;
+    font-size: 84px;
+    display: block;
 }
 
 .map {

@@ -19,40 +19,51 @@
 
     <body>
         <div class="container-fluid">
-            <div class="dropdown" style="z-index: 10">
-                <img class="btn btn-secondary menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
-                    <li>
-                        <form method="get" action="{% url 'home' %}"> 
-                            <input type="submit" class='dropdown-item' value="Home" />
-                        </form>
-                    </li>
-                    <li>
-                        <form method="get" action="{% url 'past_data' %}"> 
-                            <input type="submit" class='dropdown-item' value="Past Data" />
-                        </form>
-                    </li>
-                    <li>
-                        <form method="get" action="{% url 'download' %}"> 
-                            <input type="submit" class='dropdown-item' value="Download" />
-                        </form>
-                    </li>
-                    <li>
-                        <form method="get" action="{% url 'contact' %}"> 
-                            <input type="submit" class='dropdown-item' value="Contact" />
-                        </form>
-                    </li>
-                    <li>
-                        <form method="get" action="{% url 'about' %}"> 
-                            <input type="submit" class='dropdown-item' value="About" />
-                        </form>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col-1">
+                    <div class="dropdown" style="z-index: 10; margin: 12px;">
+                        <img class="btn btn-secondary menu2" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
+                            <li>
+                                <form method="get" action="{% url 'home' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Home" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'past_data' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Past Data" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'download' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Download" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'contact' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Contact" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'about' %}"> 
+                                    <input type="submit" class='dropdown-item' value="About" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'upload' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Upload" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6" style="font-size:40px; margin: 10px; font-weight: bold;">
+                    Pittsburgh Pollution
+                </div>
             </div>
-            <div class="row" style="background-image: url(/static/pollution_map/images/pollution_img2.jpg); text-align: center; color: white; height: 40vh; background-size: cover; font-size: 84px; display: block; padding: 10vh">
-                {% block title %}
-                {% endblock %}
-            </div>
+            {% block title %}
+            {% endblock %}
+            
         </div>
     </body>
 </html>

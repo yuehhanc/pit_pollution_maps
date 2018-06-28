@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
+from pollution_map.forms import FileForm
+from pollution_map.models import File
+from django.utils import timezone
 
 # Create your views here.
 def home(request):
@@ -41,3 +44,19 @@ def contact(request):
 def about(request):
     context = {}
     return render(request, 'pollution_map/about.html', context)
+
+def upload(request):
+    context = {}
+    context['success'] = False
+    if request.method == 'GET':
+        context['form'] = FileForm()
+        return render(request, 'pollution_map/upload.html', context)
+    new_file = File(add_time = timezone.now())
+    # new_file.add_time = timezone.now()
+    form = FileForm(request.POST, request.FILES, instance = new_file)
+    if not form.is_valid():
+        context['form'] = FileForm()
+        return render(request, 'pollution_map/upload.html', context)
+    context['success'] = True
+    form.save()
+    return render(request, 'pollution_map/upload.html', context)

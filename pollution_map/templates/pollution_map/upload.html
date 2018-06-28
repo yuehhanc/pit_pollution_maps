@@ -1,0 +1,23 @@
+{% extends "pollution_map/bg_base.html" %}
+
+{% block title %}
+<div class="titleLayer" style="background: rgba(61,89,171,0.5);">
+    <div style="font-size: 24px; padding: 5vh">
+        <form method="post" action="{% url 'upload' %}" enctype= "multipart/form-data">
+            {% if not success %}
+                <h3>Upload a new csv file:</h3>
+                    {{form.file}}
+                {% csrf_token %}
+                <input id="submit" style="border-radius: 5px" class="btn" type="submit" value="Submit">
+            {% else %}
+                <h3>Upload Successfully!</h3>
+                {% csrf_token %}
+                <input id="submit" style="border-radius: 5px" class="btn" type="submit" value="Return">
+            {% endif %}
+
+        </form>
+    </div>
+</div>
+<div class="row" style="background-image: url(/static/pollution_map/images/pollution_img2.jpg); height: 40vh; background-size: cover; padding: 10vh">         
+</div>
+{% endblock %}
