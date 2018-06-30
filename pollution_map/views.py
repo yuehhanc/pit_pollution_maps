@@ -6,15 +6,24 @@ from django.http import HttpResponse, Http404
 from pollution_map.forms import FileForm
 from pollution_map.models import File
 from django.utils import timezone
+from django.shortcuts import render, get_object_or_404, redirect
+from django.core.urlresolvers import reverse
+import os, shutil
 
 # Create your views here.
 def home(request):
     context = {}
+    currFileName = "Interpolated_Map"
+    for file in os.listdir("pollution_map/static/pollution_map/data/"):
+        fileName = file.split("/")[-1]
+        if fileName[:-4] > currFileName[:-4]:
+            currFileName = fileName
+    shutil.copy("pollution_map/static/pollution_map/data/" + currFileName, "pollution_map/static/pollution_map/Interpolated_Map.csv")
     return render(request, 'pollution_map/home.html', context)
 
 def map(request):
     context = {}
-    return render(request, 'pollution_map/map.html', context)
+    return redirect(reverse('home'), context)
 
 def get_cursor_json(request):
     lat = 0

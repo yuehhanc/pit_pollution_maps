@@ -229,8 +229,10 @@ function assignAvg(x, y, index, flag) {
     }
     // console.log("count: " + count + " sum: " + sum);
     if (count > 0) {
+        console.log("count: " + count);
         return sum/count;
     } else {
+        // console.log("Client Width: " + x*scaleX + ", Client Height:" + y*scaleY);
         return 1;
     }
 }
@@ -252,7 +254,7 @@ function searchPoint(event) {
     // coord: top-left:40.38, -80.12 bottom-right: 40.48, -79.83
     var lat = 40.48 - (0.1/(1+map.clientHeight))*(y-129);//+1 to avoid zero division
     var lon = -80.12 + (0.29/(1+map.clientWidth))*x;
-    // console.log("Latitude: " + lat + ", Longitude:" + lon);
+    console.log("Latitude: " + lat + ", Longitude:" + lon);
     var dist = 2147483647;
     var index = 0;
     for (i = 0; i < latitude.length; i++) {
