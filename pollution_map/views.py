@@ -14,7 +14,7 @@ import os, shutil
 def home(request):
     context = {}
     currFileName = "Interpolated_Map"
-    for file in os.listdir("pollution_map/static/pollution_map/data/"):
+    for file in os.listdir("/pollution_map/static/pollution_map/data/"):
         fileName = file.split("/")[-1]
         if fileName[:-4] > currFileName[:-4]:
             currFileName = fileName
