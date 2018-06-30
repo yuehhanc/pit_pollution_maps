@@ -14,11 +14,21 @@ import os, shutil
 def home(request):
     context = {}
     currFileName = "Interpolated_Map"
-    for file in os.listdir("/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/data/"):
-        fileName = file.split("/")[-1]
-        if fileName[:-4] > currFileName[:-4]:
-            currFileName = fileName
-    shutil.copy("pollution_map/static/pollution_map/data/" + currFileName, "pollution_map/static/pollution_map/Interpolated_Map.csv")
+    try:
+        # AWS
+        for file in os.listdir("/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/data/"):
+            fileName = file.split("/")[-1]
+            if fileName[:-4] > currFileName[:-4]:
+                currFileName = fileName
+        shutil.copy("/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/data/" + currFileName, "/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/Interpolated_Map.csv")
+    except:
+        # Local
+        for file in os.listdir("pollution_map/static/pollution_map/data/"):
+            fileName = file.split("/")[-1]
+            if fileName[:-4] > currFileName[:-4]:
+                currFileName = fileName
+        shutil.copy("pollution_map/static/pollution_map/data/" + currFileName, "pollution_map/static/pollution_map/Interpolated_Map.csv")
+    
     return render(request, 'pollution_map/home.html', context)
 
 def map(request):
