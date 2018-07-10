@@ -19,4 +19,5 @@ def task_number_one():
             fileName = file.split("/")[-1]
             if fileName[:-4] > currFileName[:-4]:
                 currFileName = fileName
+        print(currFileName)
         shutil.copyfile("pollution_map/static/pollution_map/data/" + currFileName, "pollution_map/static/pollution_map/Interpolated_Map.csv")
