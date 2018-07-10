@@ -1,0 +1,30 @@
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /home/xxx/webapps/yshblog_app/yshblog: ENOENT
+supervisor: child process was not spawned
+
+worker: Warm shutdown (MainProcess)
+
+worker: Hitting Ctrl+C again will terminate all running tasks!
+
+worker: Warm shutdown (MainProcess)
