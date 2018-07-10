@@ -9,8 +9,8 @@
 
 # supervisord
 # supervisord*
-celerybeat-schedule*
-celery_worker_err.log*
-celery_beat.log*
-celery_worker.log*
-.supervisord*
+#celerybeat-schedule*
+#celery_worker_err.log*
+#celery_beat.log*
+#celery_worker.log*
+#.supervisord*
