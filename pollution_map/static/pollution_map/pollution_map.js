@@ -6,6 +6,10 @@ var PM025 = [];
 var prev_degO3 = 90;
 var prev_degPM025 = 90;
 var flag = 0; // 0: PM2.5, 1: O3
+var gridVals = new Array(84);
+for (var i = 0; i < 84; i++) {
+  gridVals[i] = new Array(100);
+}
 
 $(document).ready(function() {
     $.ajax({
@@ -142,6 +146,8 @@ function addGrids(flag) {
             var x = i;
             var y = (16 + j);
             var avg = assignAvg(x, y, 0, flag);
+            gridVals[j][i] = avg;
+            // console.log(j + "," + i + "GridVal: " + gridVals[j][i]);
             // console.log("avg: " + avg);
             var multi = 1;
             var meanO3 = 25.8896573;
@@ -229,11 +235,28 @@ function assignAvg(x, y, index, flag) {
     }
     // console.log("count: " + count + " sum: " + sum);
     if (count > 0) {
-        console.log("count: " + count);
+        // console.log("count: " + count);
         return sum/count;
     } else {
-        // console.log("Client Width: " + x*scaleX + ", Client Height:" + y*scaleY);
-        return 1;
+        var i = x;
+        var j = y-16;
+        if (j-6 > 0) {
+            sum += gridVals[j-6][i];
+            count++;
+        }
+        if (i-4 > 0) {
+            sum += gridVals[j][i-4];
+            count++;
+        }
+        
+        if (sum > 0) {
+            return sum/count;
+        } else {
+            console.log("Client Width: " + x*scaleX + ", Client Height:" + y*scaleY);
+            console.log("Long: " + xMin + ", Lat:" + yMin);
+            console.log("Long: " + xMax+ ", Lat:" + yMax);
+            return 1;
+        }
     }
 }
 
