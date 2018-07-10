@@ -12,6 +12,7 @@ def task_number_one():
             fileName = file.split("/")[-1]
             if fileName[:-4] > currFileName[:-4]:
                 currFileName = fileName
+        print(currFileName)
         shutil.copyfile("/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/data/" + currFileName, "/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/Interpolated_Map.csv")
     except:
         # Local
