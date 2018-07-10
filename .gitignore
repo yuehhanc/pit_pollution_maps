@@ -8,7 +8,7 @@
 *db.sqlite3
 
 # supervisord
-supervisord*
+# supervisord*
 celerybeat-schedule*
 celery_worker_err.log*
 celery_beat.log*
