@@ -4,7 +4,7 @@ import os, shutil
 
 @task()
 def task_number_one():
-    print("It works!")
+    print("It works")
     currFileName = "Interpolated_Map"
     try:
         # AWS
@@ -15,7 +15,6 @@ def task_number_one():
         shutil.copyfile("/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/data/" + currFileName, "/home/ubuntu/pit_pollution_maps/pollution_map/static/pollution_map/Interpolated_Map.csv")
     except:
         # Local
-        print("Testing")
         for file in os.listdir("pollution_map/static/pollution_map/data/"):
             fileName = file.split("/")[-1]
             if fileName[:-4] > currFileName[:-4]:
