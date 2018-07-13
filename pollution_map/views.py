@@ -79,3 +79,34 @@ def upload(request):
     context['success'] = True
     form.save()
     return render(request, 'pollution_map/upload.html', context)
+
+def test1(request):
+    context = {}
+    return render(request, 'pollution_map/test1.html', context)
+
+def test2(request):
+    context = {}
+    return render(request, 'pollution_map/test2.html', context)
+
+def test3(request):
+    context = {}
+    return render(request, 'pollution_map/test3.html', context)
+
+def test4(request):
+    context = {}
+    return render(request, 'pollution_map/test4.html', context)
+
+def test5(request):
+    context = {}
+    return render(request, 'pollution_map/test5.html', context)
+
+def test6(request):
+    context = {}
+    return render(request, 'pollution_map/test6.html', context)
+
+def test_menu(request):
+    context = {}
+    return render(request, 'pollution_map/test_menu.html', context)
+
+
+

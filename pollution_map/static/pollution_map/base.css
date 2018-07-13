@@ -180,6 +180,30 @@
     position: absolute;
 }
 
+.cursor2 {
+    z-index: 5;
+    border-color: gold;
+    border-style: solid;
+    border-width: 6px;
+    background-color: gold;
+    text-align: center;
+    width: 2.5vw;
+    height: 2.5vw;
+    position: absolute;
+    color: white;
+}
+
+.menu_btn {
+    width: 30vw;
+    box-shadow: 2px 3px;
+}
+
+.table_display {
+    width: 8vw;
+    text-align: center;
+    border-style: solid;
+}
+
 input[type='radio']:after {
     width: 32px;
     height: 32px;
