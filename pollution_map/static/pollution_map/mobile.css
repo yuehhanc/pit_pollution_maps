@@ -90,7 +90,7 @@
     height: 5.5vh;
     position: absolute;
     left:16.7vh;
-    bottom: 9vh;
+    bottom: 8vh;
     transform-origin: bottom; 
 }
 
@@ -99,7 +99,7 @@
     height: 5.5vh;
     position: absolute;
     left:16.7vh;
-    bottom: 9vh;
+    bottom: 8vh;
     transform-origin: bottom;
 }
 
@@ -108,7 +108,7 @@
     height: 1.4vh;
     position: absolute;
     left:17.3rem;
-    bottom: 9.7rem;
+    bottom: 8.7rem;
 }
 
 .pm25_dial {
