@@ -227,9 +227,9 @@
     z-index: 5;
     border-color: yellow;
     border-style: solid;
-    border-width: 6px;
-    width: 1.5vw;
-    height: 1.5vw;
+    border-width: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
     position: absolute;
 }
 
