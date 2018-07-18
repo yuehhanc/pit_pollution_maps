@@ -19,10 +19,6 @@ for (var i = 0; i < 76; i++) {
 }
 
 $(document).ready(function() {
-    if (screen.width < mobileScreenSize) {
-        $("#checkBoxPM25").attr('checked', 'checked');
-    }
-
     $.ajax({
         type: "GET",
         url: "/static/pollution_map/Interpolated_Map.csv?q=" + Math.random(),
