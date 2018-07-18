@@ -10,18 +10,54 @@
         <script src="{% static 'pollution_map/bootstrap.bundle.js' %}" type="text/javascript"></script>
         <script src="{% static 'pollution_map/pollution_map.js' %}" type="text/javascript"></script>
         <link href="{% static 'pollution_map/bootstrap.css' %}" rel="stylesheet" type="text/css">
-    
-        <link href="{% static 'pollution_map/base.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'pollution_map/base.css' %}" media="screen and (min-device-width: 1060px)" rel="stylesheet" type="text/css">
+        <link href="{% static 'pollution_map/mobile.css' %}" media="screen and (max-device-width: 1059px)" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'pollution_map/images/cmu_icon.png' %}" />
-        <title> {% block title %} Pittsburgh Pollution Map {% endblock %} </title>
+        <title> Pittsburgh Pollution Map </title>
     </head>
 
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-2 mobile">
                     <div class="dropdown" style="z-index: 10">
-                        <img class="btn btn-secondary menu" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        <img class="menu_mobile btn btn-secondary" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        
+                        <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
+                            <li>
+                                <form method="get" action="{% url 'home' %}"> 
+                                    <input type="submit" class='dropdown-item1' value="Home" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'about' %}"> 
+                                    <input type="submit" class='dropdown-item1' value="About" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'contact' %}"> 
+                                    <input type="submit" class='dropdown-item1' value="Contact" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'snapshot' %}"> 
+                                    <input type="submit" class='dropdown-item1' value="Snapshot" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'data' %}"> 
+                                    <input type="submit" class='dropdown-item1' value="Data" />
+                                    <input type="hidden" name="id" value={{id}} />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-10 mobile name">Pittsburgh Pollution</div>
+                
+                <div class="col-lg-5 big-screen">
+                    <div class="dropdown" style="z-index: 10">
+                        <img class="menu btn btn-secondary" src="{% static 'pollution_map/images/menu.png' %}" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
                             <li>
                                 <form method="get" action="{% url 'home' %}"> 
@@ -51,28 +87,16 @@
                             </li>
                         </ul>
                     </div>
+
                     <div style="text-align: left; font-size: 40px; font-weight: bold; position: absolute; left: 7vw;">
                         Pittsburgh Pollution
                     </div>
-                    <p style="top: 7vh; left: 7vw; position: absolute; font-size: 14px;">
+                    <p class="big-screen" style="top: 7vh; left: 7vw; position: absolute; font-size: 14px;">
                         Please click around the map to find pollution information. You can choose which pollutant you view in the menu to the right.
                     </p>
                 </div>
-                <div class="col-lg-2 dial_frame">
-                    
+                <div class="col-lg-2 dial_frame big-screen">
                     <img src="{% static 'pollution_map/images/white_bg.png' %}" class="white_bg">
-                    <!-- <div class = "pm">
-                        Particular Matter: PM
-                        <sub>
-                            2.5
-                        </sub>
-                    </div>
-                    <div class="ozone">
-                        Ozone: O
-                        <sub>
-                            3
-                        </sub>
-                    </div> -->
                     <div></div>
                     <div class="pm25_dial">
                         <img src="{% static 'pollution_map/images/dial.png' %}" class="pm25_dial_img">
@@ -81,15 +105,10 @@
                         </div>
                         <img src="{% static 'pollution_map/images/black_circle.png' %}" class="black_circle">
                     </div>
-                    <!-- <div class="o3_dial">
-                        <img src="{% static 'pollution_map/images/dial.png' %}" class="o3_dial_img">
-                        <img src="{% static 'pollution_map/images/blue_arrow.png' %}" class="blue_arrow" id="o3_arrow">
-                        <img src="{% static 'pollution_map/images/black_circle.png' %}" class="black_circle">
-                    </div>   -->
                 </div>
 
                 <div class="col-lg-5">
-                    <div  style="z-index: 0; right:0vh; top: 0vh; flex-wrap: wrap; position: absolute;">
+                    <div  class="radio-title-box big-screen">
                         <div class="box">
                             Current Displayed Pollutant
                         </div>
@@ -116,6 +135,46 @@
                             </table>
                         </div>
                     </div>
+
+                    <div  class="radio-title-box mobile">
+                        <div class="box">
+                            Current Displayed Pollutant
+                        </div>
+                        <div class="box">
+                            <table style="text-align: center; padding: 0; width: 100%; height:100%;">
+                                <tr>
+                                    <td>
+                                        <input id="checkBox" type="radio" name="pollutant" checked="checked" id="pm25radio" onclick="pm25RadioCheckedMobile()">
+                                    </td>
+                                    <td class="checkbox">
+                                        <div>
+                                            Particulate Matter
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="checkBox" name="pollutant" type="radio" id="o3radio" onclick="o3RadioCheckedMobile()">
+                                    </td>
+                                    <td class="checkbox">
+                                        <div>
+                                            Ozone
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 dial_frame mobile" onclick="searchPointMobile(event)">
+                        <!-- <img src="{% static 'pollution_map/images/white_bg.png' %}" class="white_bg"> -->
+                        <div></div>
+                        <div class="pm25_dial">
+                            <img src="{% static 'pollution_map/images/dial.png' %}" class="pm25_dial_img">
+                            <div id="arrow_mobile">
+                                <img src="{% static 'pollution_map/images/red_arrow.png' %}" class="red_arrow" id="pm25_arrow_mobile">
+                            </div>
+                            <img src="{% static 'pollution_map/images/black_circle_half.png' %}" class="black_circle">
+                        </div>
+                    </div>
                     {% block layer %}
                     {% endblock %}
                 </div>                
@@ -128,8 +187,11 @@
             </div>
         </div>
         {% block map %}
-        <div id="map_area">
+        <div id="map_area" class="big-screen">
             <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" class="map" id="map">
+        </div>
+        <div id="map_area_mobile" class="mobile">
+            <img src="{% static 'pollution_map/images/pit_map_mobile.png' %}" onclick="searchPointMobile(event)" class="map mobile" id="map_mobile">
         </div>
         {% endblock %}
     </body>

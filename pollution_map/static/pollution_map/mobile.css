@@ -1,3 +1,54 @@
+.big-screen {
+    display: none;
+}
+
+.menu {
+    display: none;
+}
+
+.menu_mobile {
+    width: 8rem;
+    height:8rem;
+    flex-wrap: wrap;
+}
+
+.dropdown-item1 {
+    display: block;
+    width: 100vw;
+    height: 100px;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    font-size: 3rem;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-family: 'FreeMono', monospace;
+}
+
+.dropdown-item1:hover {
+    width: 100vw;
+    border-bottom: 3px solid #4f4f4f;
+    background-color: rgba(6,69,173,0.5);
+    color: white;
+}
+
+.menu-button {
+    /*flex-wrap: wrap;*/
+    width: 12rem;
+    height: 9rem;
+    padding-right:0;
+    background-color: lightgray;
+    border-radius: 1rem;
+    /*border: solid;*/
+}
+
+.name {
+    font-size: 5rem;
+}
+
 .pm {
     font-size: 2vh;
     flex-wrap: wrap;
@@ -23,50 +74,41 @@
 
 .box {
     flex-wrap: wrap;
-    width: 60vh;
+    width: 98vw;
     height: 8vh;
     font-size:3vh;
     border-style: solid;
-    border-width: 1vh;
-    padding:0.5vh;
+    border-width: 1rem;
+    padding:0;
     text-align: center;
     border-color: black;
-    right: 0vh;
     z-index: -1;
 }
 
-.radio-title-box {
-    z-index: 0;
-    right:0vh;
-    top: 0vh;
-    flex-wrap: wrap;
-    position: absolute;
-}
-
 .blue_arrow {
-    width: 2vh;
-    height: 11vh;
+    width: 1vh;
+    height: 5.5vh;
     position: absolute;
-    left:11.5vh;
-    bottom: 2.5vh;
+    left:16.7vh;
+    bottom: 9vh;
     transform-origin: bottom; 
 }
 
 .red_arrow {
-    width: 2vh;
-    height: 11vh;
+    width: 1vh;
+    height: 5.5vh;
     position: absolute;
-    left:11.5vh;
-    bottom: 2.5vh;
+    left:16.7vh;
+    bottom: 9vh;
     transform-origin: bottom;
 }
 
 .black_circle {
-    width: 5vh;
-    height: 5vh;
+    width: 2.5vh;
+    height: 1.4vh;
     position: absolute;
-    left:10vh;
-    bottom: 0vh;
+    left:17.3rem;
+    bottom: 9.7rem;
 }
 
 .pm25_dial {
@@ -91,13 +133,13 @@
 .pm25_dial_img {
     /*width: 25vh;
     height: 15vh;*/
-    width: 27vh;
-    height: 27vh;
+    width: 14vh;
+    height: 14vh;
     position: absolute;
     /*left:2vh;
     top:3.5vh;*/
-    left:-1vh;
-    top:-1vh;
+    left:11rem;
+    top:-1rem;
 }
 
 .o3_dial_img {
@@ -109,9 +151,12 @@
 }
 
 .dial_frame {
-    z-index:1;
+    z-index:12;
     background-color: white;
     backface-visibility: visible;
+    position: absolute;
+    bottom: 2rem;
+    left: -1rem;
 }
 
 .white_bg {
@@ -137,14 +182,6 @@
     flex-wrap: wrap;
 }
 
-.menu-mobile {
-    display: none;
-}
-
-.mobile {
-    display: none;
-}
-
 .menu2 {
     width: 40px;
     height:32px;
@@ -154,7 +191,7 @@
 
 .layer {
     width: 4vw;
-    height: 6vh;
+    height: 4vh;
     position: absolute;
     z-index: 3;
     transition: opacity 250ms;
@@ -166,7 +203,7 @@
     width: 100vw;
     height: 40vh;
     position: absolute;
-    padding: 10vh;
+    padding-top: 10vh;
     left: 0vw;
     z-index: 3;
     transition: opacity 250ms;
@@ -174,15 +211,15 @@
     opacity: 1;
     text-align: center;
     color: white;
-    font-size: 84px;
+    font-size: 12rem;
     display: block;
 }
 
 .map {
     width: 100vw;
-    height: 84vh;
+    height: 76vh;
     position: absolute;
-    top: 16vh;
+    top: 24vh;
     z-index: 2;
 }
 
@@ -221,43 +258,43 @@
 }
 
 .content {
-    font-size: 2rem;
+    font-size: 3.5rem;
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 }
 
 
 footer{
     padding: 3vh;
-    height: 10vh;
+    height: 5vh;
     text-align: center;
-    font-size: 1rem;
+    font-size: 2rem;
     color: #444;
 }
 
 input[type='radio']:after {
-    width: 32px;
-    height: 32px;
+    width: 4rem;
+    height: 4rem;
     border-radius: 32px;
-    top: -10.5px;
+    top: -2.3rem;
     left: -9px;
     position: relative;
     background-color: #d1d3d1;
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 5px solid black;
+    border: 0.5rem solid black;
 }
 
 input[type='radio']:checked:after {
-    width: 32px;
-    height: 32px;
+    width: 4rem;
+    height: 4rem;
     border-radius: 32px;
-    top: -10.5px;
+    top: -2.3rem;
     left: -9px;
     position: relative;
     background-color: black;
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 5px solid black;
+    border: 0.5rem solid black;
 }
