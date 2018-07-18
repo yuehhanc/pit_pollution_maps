@@ -1,6 +1,21 @@
 {% extends "pollution_map/bg_base.html" %}
 {% block title %}
-<div class="titleLayer" style="background: rgba(61,89,171,0.5);">About Us</div>
+<div class="titleLayer" style="background: rgba(61,89,171,0.5);">About</div>
 <div class="row" style="background-image: url(/static/pollution_map/images/pollution_img2.jpg); height: 40vh; background-size: cover; padding: 10vh">         
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-1"></div>
+    <div class="col-10">
+        <br>
+        <br>
+        <div class="content">
+        This map was created by researchers in the Department of Social and Decision Sciences (SDS) and the Center for Atmospheric Particle Studies (CAPS) at Carnegie Mellon University with the assistance of EPA funding. The purpose of this site is to display Particulate Matter and Ozone information throughout the Pittsburgh area using a network of Real-time Affordable Multi-Pollutant (RAMP) monitors. The map is updated every hour based on the RAMP measurements.
+    </div>
+    </div>
+    <div class="col-1"></div>
 </div>
 {% endblock %}

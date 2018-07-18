@@ -30,13 +30,8 @@
                                 </form>
                             </li>
                             <li>
-                                <form method="get" action="{% url 'past_data' %}"> 
-                                    <input type="submit" class='dropdown-item' value="Past Data" />
-                                </form>
-                            </li>
-                            <li>
-                                <form method="get" action="{% url 'download' %}"> 
-                                    <input type="submit" class='dropdown-item' value="Download" />
+                                <form method="get" action="{% url 'about' %}"> 
+                                    <input type="submit" class='dropdown-item' value="About" />
                                 </form>
                             </li>
                             <li>
@@ -45,15 +40,20 @@
                                 </form>
                             </li>
                             <li>
-                                <form method="get" action="{% url 'about' %}"> 
-                                    <input type="submit" class='dropdown-item' value="About" />
+                                <form method="get" action="{% url 'snapshot' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Snapshot" />
                                 </form>
                             </li>
                             <li>
+                                <form method="get" action="{% url 'data' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Data" />
+                                </form>
+                            </li>
+                    <!--         <li>
                                 <form method="get" action="{% url 'upload' %}"> 
                                     <input type="submit" class='dropdown-item' value="Upload" />
                                 </form>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -63,7 +63,19 @@
             </div>
             {% block title %}
             {% endblock %}
+            {% block content %}
+            {% endblock %}
             
         </div>
+        <hr>
+        <footer>
+            <div class="footerR">
+                <p>© 2018  Department of Social and Decision Sciences (SDS) and the Center for Atmospheric Particle Studies (CAPS) </p>
+                <br>
+            </div>
+            <div class= "footerL">
+
+            </div>
+        </footer>
     </body>
 </html>

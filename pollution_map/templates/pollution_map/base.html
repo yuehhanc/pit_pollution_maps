@@ -29,14 +29,8 @@
                                 </form>
                             </li>
                             <li>
-                                <form method="get" action="{% url 'past_data' %}"> 
-                                    <input type="submit" class='dropdown-item' value="Past Data" />
-                                    <input type="hidden" name="id" value={{id}} />
-                                </form>
-                            </li>
-                            <li>
-                                <form method="get" action="{% url 'download' %}"> 
-                                    <input type="submit" class='dropdown-item' value="Download" />
+                                <form method="get" action="{% url 'about' %}"> 
+                                    <input type="submit" class='dropdown-item' value="About" />
                                 </form>
                             </li>
                             <li>
@@ -45,8 +39,14 @@
                                 </form>
                             </li>
                             <li>
-                                <form method="get" action="{% url 'about' %}"> 
-                                    <input type="submit" class='dropdown-item' value="About" />
+                                <form method="get" action="{% url 'snapshot' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Snapshot" />
+                                </form>
+                            </li>
+                            <li>
+                                <form method="get" action="{% url 'data' %}"> 
+                                    <input type="submit" class='dropdown-item' value="Data" />
+                                    <input type="hidden" name="id" value={{id}} />
                                 </form>
                             </li>
                         </ul>

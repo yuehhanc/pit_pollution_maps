@@ -204,6 +204,20 @@
     border-style: solid;
 }
 
+.content {
+    font-size: 2rem;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
+
+footer{
+    padding: 3vh;
+    height: 10vh;
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+}
+
 input[type='radio']:after {
     width: 32px;
     height: 32px;

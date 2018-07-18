@@ -48,13 +48,13 @@ def get_cursor_json(request):
     coord = [lat, lon]
     return HttpResponse(coord, content_type='application/json')
 
-def past_data(request):
+def data(request):
     context = {}
-    return render(request, 'pollution_map/past_data.html', context)
+    return render(request, 'pollution_map/data.html', context)
 
-def download(request):
+def snapshot(request):
     context = {}
-    return render(request, 'pollution_map/download.html', context)
+    return render(request, 'pollution_map/snapshot.html', context)
 
 def contact(request):
     context = {}

@@ -5,8 +5,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^map$', views.map, name='map'),
-    url(r'^past_data$', views.past_data, name='past_data'),
-    url(r'^download$', views.download, name='download'),
+    url(r'^data$', views.data, name='data'),
+    url(r'^snapshot$', views.snapshot, name='snapshot'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^about$', views.about, name='about'),
     url(r'^upload$', views.upload, name='upload'),
