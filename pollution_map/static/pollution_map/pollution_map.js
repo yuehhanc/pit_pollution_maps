@@ -621,6 +621,17 @@ function searchPointMobile(event) {
             });
         }
     });
+    $({deg: 0}).animate({deg: 0}, {
+        duration: 1,
+        step: function(now) {
+            // in the step-callback (that is fired each step of the animation),
+            // you can use the `now` paramter which contains the current
+            // animation-position (`0` up to `angle`)
+            $("#black_circle").css({
+                transform: 'rotate(' + (now) + 'deg)'
+            });
+        }
+    });
 
     // console.log("Rotate O3: " + rotateO3);
     // console.log("Rotate PM25: " + rotatePM025);

@@ -88,27 +88,34 @@
 .blue_arrow {
     width: 1vh;
     height: 5.5vh;
-    position: absolute;
+    margin-left: 18rem;
+    margin-top: -23rem;
     left:16.7vh;
     bottom: 8vh;
     transform-origin: bottom; 
+    /*opacity: .99;*/
 }
 
 .red_arrow {
     width: 1vh;
     height: 5.5vh;
-    position: absolute;
+    margin-left: 18rem;
+    margin-top: -23rem;
     left:16.7vh;
     bottom: 8vh;
     transform-origin: bottom;
+    /*opacity: .99;*/
 }
 
 .black_circle {
     width: 2.5vh;
     height: 1.4vh;
-    position: absolute;
+    margin-left: 17.2rem;
+    margin-top: -21.5rem;
     left:17.3rem;
     bottom: 8.7rem;
+    z-index: 20;
+    opacity: 1;
 }
 
 .pm25_dial {
@@ -135,11 +142,10 @@
     height: 15vh;*/
     width: 14vh;
     height: 14vh;
-    position: absolute;
     /*left:2vh;
     top:3.5vh;*/
-    left:11rem;
-    top:-1rem;
+    margin-left:11rem;
+    margin-top:-1rem;
 }
 
 .o3_dial_img {
