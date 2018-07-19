@@ -32,7 +32,7 @@
                         <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Color + Dial</div></tr>
                         <tr id="color_dial">
                             {% for item in color_dial %}
-                                {{item}}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
                                 <br>
                             {% endfor %}
                             Average: {{color_dial_average}}
@@ -43,7 +43,7 @@
                         <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Gray Scale + Dial</div></tr>
                         <tr id="gray_dial">
                             {% for item in gray_dial %}
-                                {{item}}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
                                 <br>
                             {% endfor %}
                             Average: {{gray_dial_average}}
@@ -54,7 +54,7 @@
                         <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">No Color + Dial</div></tr>
                         <tr id="no_color_dial">
                             {% for item in no_color_dial %}
-                                {{item}}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
                                 <br>
                             {% endfor %}
                             Average: {{no_color_dial_average}}
@@ -67,7 +67,7 @@
                         <tr"><div style="border-color: cyan; border: solid; border-radius: 1rem;">Color + Table</div></tr>
                         <tr id="color_table">
                             {% for item in color_table %}
-                                {{item}}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
                                 <br>
                             {% endfor %}
                             Average: {{color_table_average}}
@@ -78,7 +78,7 @@
                         <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Gray Scale + Table</div></tr>
                         <tr id="gray_table">
                             {% for item in gray_table %}
-                                {{item}}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
                                 <br>
                             {% endfor %}
                             Average: {{gray_table_average}}
@@ -89,7 +89,7 @@
                         <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">No Color + Table</div></tr>
                         <tr id="no_color_table">
                             {% for item in no_color_table %}
-                                {{item}}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
                                 <br>
                             {% endfor %}
                             Average: {{no_color_table_average}}
