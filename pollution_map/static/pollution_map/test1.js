@@ -281,7 +281,6 @@ function searchPoint(event) {
     }
     map_area.appendChild(newCursor);
     numClicks++;
-    console.log("number clicks: " + numClicks);
 }
 
 function detectMobile() {
@@ -311,7 +310,7 @@ function saveNumClicks() {
     req.open("POST", "/pollution_map/recordNumClicks", true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     req.send("numClicks="+numClicks+"&category="+"Color+Dial"+"&csrfmiddlewaretoken="+getCSRFToken());
-
+    console.log("number clicks: " + numClicks);
 }
 
 window.onbeforeunload= function() {
