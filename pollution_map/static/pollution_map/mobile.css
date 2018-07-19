@@ -261,6 +261,14 @@
 }
 
 
+.down_arrow {
+    display: none;
+}
+
+.up_arrow {
+    display: none; 
+}
+
 footer{
     padding: 3vh;
     height: 5vh;
