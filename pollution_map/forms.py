@@ -23,3 +23,8 @@ class FileForm(forms.ModelForm):
             except AttributeError:
                 pass
             return file
+
+class EntryForm(forms.ModelForm):
+    class Meta:
+        model = Entry
+        exclude = {'add_time',}

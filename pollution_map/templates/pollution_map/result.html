@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+        {% load staticfiles %}
+        <!-- Citation: bootstrat.css library from Bootstrap -->     
+        <script src="{% static 'pollution_map/jquery-1.11.1.js' %}" type="text/javascript"></script>
+        <script src="{% static 'pollution_map/bootstrap.bundle.js' %}" type="text/javascript"></script>
+        <link href="{% static 'pollution_map/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    
+        <link href="{% static 'pollution_map/base.css' %}" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'pollution_map/images/cmu_icon.png' %}" />
+        <title> {% block title %} Pittsburgh Pollution Map {% endblock %} </title>
+    </head>
+
+    <body style="background-color: gold; padding: 2%;">
+        <div class="container-fluid" style="background-color: gold; padding: 2%;">
+            <div class="row" style="background-color: gold; padding: 2%;">
+                <h1 style="text-align: left;">Result</h1>
+            </div>
+            <div class="row">
+                <div class="col-6" style="background-color: gold; padding: 2%; text-align: center;">   
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Color + Dial</div></tr>
+                        <tr id="color_dial">
+                            {% for item in color_dial %}
+                                {{item}}
+                                <br>
+                            {% endfor %}
+                            Average: {{color_dial_average}}
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Gray Scale + Dial</div></tr>
+                        <tr id="gray_dial">
+                            {% for item in gray_dial %}
+                                {{item}}
+                                <br>
+                            {% endfor %}
+                            Average: {{gray_dial_average}}
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">No Color + Dial</div></tr>
+                        <tr id="no_color_dial">
+                            {% for item in no_color_dial %}
+                                {{item}}
+                                <br>
+                            {% endfor %}
+                            Average: {{no_color_dial_average}}
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-6" style="background-color: gold; padding: 2%; text-align: center;">
+                    <br>
+                    <table>
+                        <tr"><div style="border-color: cyan; border: solid; border-radius: 1rem;">Color + Table</div></tr>
+                        <tr id="color_table">
+                            {% for item in color_table %}
+                                {{item}}
+                                <br>
+                            {% endfor %}
+                            Average: {{color_table_average}}
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Gray Scale + Table</div></tr>
+                        <tr id="gray_table">
+                            {% for item in gray_table %}
+                                {{item}}
+                                <br>
+                            {% endfor %}
+                            Average: {{gray_table_average}}
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">No Color + Table</div></tr>
+                        <tr id="no_color_table">
+                            {% for item in no_color_table %}
+                                {{item}}
+                                <br>
+                            {% endfor %}
+                            Average: {{no_color_table_average}}
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        
+    </body>
+</html>

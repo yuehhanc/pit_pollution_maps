@@ -18,4 +18,6 @@ urlpatterns = [
     url(r'^test5$', views.test5, name='test5'),
     url(r'^test6$', views.test6, name='test6'),
     url(r'^test_menu$', views.test_menu, name='test_menu'),
+    url(r'^recordNumClicks$', views.recordNumClicks),
+    url(r'^showResult$', views.showResult, name="showResult"),
 ]

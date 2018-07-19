@@ -7,6 +7,7 @@ var prev_degO3 = 90;
 var prev_degPM025 = 90;
 var flag = 0; // 0: PM2.5, 1: O3
 var gridVals = new Array(84);
+var numClicks = 0;
 for (var i = 0; i < 84; i++) {
   gridVals[i] = new Array(100);
 }
@@ -19,6 +20,7 @@ $(document).ready(function() {
         success: function(data) {
             processData(data);
             addGrids(flag);
+            numClicks = 0;
         }
      });
 });
@@ -278,6 +280,8 @@ function searchPoint(event) {
         newCursor.innerHTML = o;
     }
     map_area.appendChild(newCursor);
+    numClicks++;
+    console.log("number clicks: " + numClicks);
 }
 
 function detectMobile() {
@@ -285,3 +289,33 @@ function detectMobile() {
         window.location = "http://www.youtube.com";
     }
 }
+
+function getCSRFToken() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+        if (cookies[i].startsWith("csrftoken=")) {
+            return cookies[i].substring("csrftoken=".length, cookies[i].length);
+        }
+    }
+    return "unknown";
+}
+
+function saveNumClicks() {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (req.readyState != 4) return;
+        if (req.status != 200) return;
+        var response = JSON.parse(req.responseText);
+    }
+
+    req.open("POST", "/pollution_map/recordNumClicks", true);
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    req.send("numClicks="+numClicks+"&category="+"Color+Dial"+"&csrfmiddlewaretoken="+getCSRFToken());
+
+}
+
+window.onbeforeunload= function() {
+    saveNumClicks();
+}
+
+

@@ -19,3 +19,12 @@ class OverwriteStorage(FileSystemStorage):
 class File(models.Model):
     file = models.FileField(storage=OverwriteStorage())
     add_time = models.DateTimeField()
+
+class Entry(models.Model):
+    entry_id = models.AutoField(primary_key=True)
+    category = models.CharField(max_length = 20, blank=False)
+    numClicks = models.IntegerField()
+    add_time = models.DateTimeField()
+
+    def __unicode__(self):
+        return 'Entry(id=' + str(self.entry_id) + ', # of clicks=' + str(self.numClicks) + ')'

@@ -3,16 +3,22 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from pollution_map.forms import FileForm
-from pollution_map.models import File
+from pollution_map.forms import FileForm, EntryForm
+from pollution_map.models import File, Entry
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
-import os, shutil
+import os, shutil, sys
+
+### Third Adjustment
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def home(request):
     context = {}
+    context['pop_up'] = True
     # currFileName = "Interpolated_Map"
     # try:
     #     # AWS
@@ -33,7 +39,7 @@ def home(request):
 
 def map(request):
     context = {}
-    return redirect(reverse('home'), context)
+    return render(request, 'pollution_map/home.html', context)
 
 def get_cursor_json(request):
     lat = 0
@@ -107,6 +113,105 @@ def test6(request):
 def test_menu(request):
     context = {}
     return render(request, 'pollution_map/test_menu.html', context)
+
+def recordNumClicks(request):
+    if request.method != 'POST':
+        raise Http404
+
+    try:
+        new_entry = Entry(numClicks=request.POST.get('numClicks'), category=request.POST['category'], add_time=timezone.now())
+        new_entry_form = EntryForm(request.POST,instance=new_entry)
+        if not new_entry_form.is_valid():
+            response_text = serializers.serialize('json', [])
+            return HttpResponse(response_text, content_type='application/json')
+        new_entry_form.save()
+    except:
+        print('Fail to add the new entry!')
+        print(sys.exc_info())
+    response_text = serializers.serialize('json', Entry.objects.all())
+    return HttpResponse(response_text, content_type='application/json')
+
+def showResult(request):
+    context = {}
+    try:
+        context['color_dial'] = Entry.objects.filter(category="Color Dial")
+        count = 0
+        summ = 0
+        for item in context['color_dial']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['color_dial_average'] = summ/count
+    except:
+        pass
+
+    try:
+        context['color_table'] = Entry.objects.filter(category="Color Table")
+        count = 0
+        summ = 0
+        for item in context['color_table']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['color_table_average'] = summ/count
+    except:
+        pass
+
+    try:
+        context['gray_dial'] = Entry.objects.filter(category="Gray Dial")
+        count = 0
+        summ = 0
+        for item in context['gray_dial']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['gray_dial_average'] = summ/count
+    except:
+        pass
+
+    try:
+        context['gray_table'] = Entry.objects.filter(category="Gray Table")
+        count = 0
+        summ = 0
+        for item in context['gray_table']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['gray_table_average'] = summ/count
+    except:
+        pass
+
+    try:
+        context['no_color_dial'] = Entry.objects.filter(category="No Color Dial")
+        count = 0
+        summ = 0
+        for item in context['no_color_dial']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['no_color_dial_average'] = summ/count
+    except:
+        pass
+
+    try:
+        context['no_color_table'] = Entry.objects.filter(category="No Color Table")
+        count = 0
+        summ = 0
+        for item in context['no_color_table']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['no_color_table_average'] = summ/count
+    except:
+        pass
+
+    return render(request, 'pollution_map/result.html', context)
 
 
 

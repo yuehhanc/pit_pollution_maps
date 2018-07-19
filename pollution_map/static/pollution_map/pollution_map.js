@@ -630,7 +630,28 @@ function goToPit() {
     $("#up_arrow").hide();
     $("#down_arrow").show();
 }
+
 // window.location.reload(true);
 // window.onload = function() {
 //     addGrids(flag);
 // }
+window.onload = function() {
+    try {
+        var map = document.getElementById("map_area");
+        if (map != null) {
+            var box = document.getElementById("pop-up-box");
+            var newMessage = document.createElement("div");
+            var url = "/pollution_map/map"
+            newMessage.innerHTML = '<div class="pop-up-layer" id="layer"><div class="popup"><h2 class="error">Welcome to the Pittsburgh Air Quality Map!</h2><h2>Please click around the map to find pollution information. You can choose which pollutant you view in the “current displayed pollutant” menu to the right. If you want to learn more about a pollutant, click on the pollutant in the table (e.g. Particulate Matter and Ozone).!</h2>' +
+                        '<br><br><button class="get_it_btn" onclick="' + "location.href='"+ url +"'" + '">Get it!</button>';
+            box.appendChild(newMessage);
+            $('body').css('overflow', 'hidden');
+            $('body').css('height', '100vh');
+        }
+    } catch(err) {
+        if (document.getElementById("demo")!=null) {
+            document.getElementById("demo").innerHTML = err.message;
+        }
+    }
+}
+

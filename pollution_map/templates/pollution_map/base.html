@@ -88,7 +88,7 @@
                         </ul>
                     </div>
 
-                    <div style="text-align: left; font-size: 40px; font-weight: bold; position: absolute; left: 7vw;">
+                    <div onclick="location.href='{% url 'home' %}'" style="text-align: left; font-size: 40px; font-weight: bold; position: absolute; left: 7vw;">
                         Pittsburgh Pollution
                     </div>
                     <p class="big-screen" style="top: 7vh; left: 7vw; position: absolute; font-size: 14px;">
@@ -197,5 +197,9 @@
         </div>
         <img id="up_arrow" src="{% static 'pollution_map/images/up_arrow.png' %}" onclick="goToPit()" class="up_arrow" style="display: none;">
         <img id="down_arrow" src="{% static 'pollution_map/images/down_arrow.png' %}" onclick="goToClairton()" class="down_arrow">
+        {% if pop_up %}
+            <div id='pop-up-box' class="big-screen">
+            </div>
+        {% endif %}
     </body>
 </html>

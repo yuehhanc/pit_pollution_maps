@@ -252,6 +252,67 @@
     box-shadow: 0 0 0.4rem 0.4rem #888;
 }
 
+.pop-up-layer {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(0,0,0,0.5);
+    transition: opacity 250ms;
+    visibility: visible;
+    opacity: 1;
+    z-index: 20;
+}
+
+.popup {
+    position: absolute;
+    margin-top: 20vh;
+    margin-left: 10vw;
+    padding: 2rem;
+    background: white;
+    border: 0.5vh solid gray;
+    width: 80vw;
+    height: 50vh;
+    min-height: 120px;
+    min-width: 250px;
+    box-shadow: 1vw 1vh black;
+    flex-wrap: wrap;
+    z-index: 20;
+    border-radius: 1rem;
+}
+
+.close {
+    /*position: absolute;*/
+    /*margin-top: -1.5vh;*/
+    margin-left: -1.5vw;
+    width: 30px;
+    height: 30px;
+/*    top: 30px;
+    bottom: 30px;*/
+    font-size: 3vh;
+    color: black;
+} 
+
+.error {
+    color: black;
+}
+
+.get_it_btn {
+    width: 12rem;
+    margin-left: 38%;
+    font-size: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.2rem 0.2rem #888;
+}
+
+.get_it_btn:hover {
+    background-color: gray;
+    color: white;
+}
 
 footer{
     padding: 3vh;
