@@ -88,7 +88,7 @@
 .blue_arrow {
     width: 1vh;
     height: 5.5vh;
-    margin-left: 7rem;
+    margin-left: 6.5rem;
     position: absolute;
     transform-origin: bottom;
 }
@@ -96,7 +96,7 @@
 .red_arrow {
     width: 1vh;
     height: 5.5vh;
-    margin-left: 7rem;
+    margin-left: 6.5rem;
     position: absolute;
     transform-origin: bottom;
 }
