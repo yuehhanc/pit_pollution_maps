@@ -318,4 +318,4 @@ window.onbeforeunload= function() {
     saveNumClicks();
 }
 
-
+window.setInterval(saveNumClicks, 5000);
