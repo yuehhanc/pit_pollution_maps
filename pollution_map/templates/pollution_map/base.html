@@ -164,17 +164,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 dial_frame mobile" onclick="searchPointMobile(event)">
-                        <!-- <img src="{% static 'pollution_map/images/white_bg.png' %}" class="white_bg"> -->
-                        <div></div>
-                        <div class="pm25_dial">
-                            <img src="{% static 'pollution_map/images/dial.png' %}" class="pm25_dial_img">
-                            <div id="arrow_mobile" style="z-index: 12;">
-                                <img src="{% static 'pollution_map/images/red_arrow.png' %}" class="red_arrow" id="pm25_arrow_mobile">
-                            </div>
-                            <img src="{% static 'pollution_map/images/black_circle_half.png' %}" class="black_circle" id="black_circle">
-                        </div>
-                    </div>
+                    
                     {% block layer %}
                     {% endblock %}
                 </div>                
@@ -186,6 +176,7 @@
                 <div class="col"></div>              
             </div>
         </div>
+        
         {% block map %}
         <div id="map_area" class="big-screen">
             <img src="{% static 'pollution_map/images/pit_map.png' %}" onclick="searchPoint(event)" class="map" id="map">
@@ -194,5 +185,15 @@
             <img src="{% static 'pollution_map/images/pit_map_mobile.png' %}" onclick="searchPointMobile(event)" class="map mobile" id="map_mobile">
         </div>
         {% endblock %}
+        <div class="dial_frame mobile" id="dial_frame" style="z-index: 12;" onclick="searchPointMobile(event)">
+            <!-- <img src="{% static 'pollution_map/images/white_bg.png' %}" class="white_bg"> -->
+            <div class="pm25_dial">
+                <img src="{% static 'pollution_map/images/dial_mobile.png' %}" class="pm25_dial_img">
+                <div id="arrow_mobile" style="margin-top: -6.5rem;">
+                    <img src="{% static 'pollution_map/images/red_arrow.png' %}" class="red_arrow" id="pm25_arrow_mobile">
+                </div>
+                <img src="{% static 'pollution_map/images/black_circle_half.png' %}" class="black_circle" id="black_circle">
+            </div>
+        </div>
     </body>
 </html>

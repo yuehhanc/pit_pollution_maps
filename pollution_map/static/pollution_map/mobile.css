@@ -88,64 +88,47 @@
 .blue_arrow {
     width: 1vh;
     height: 5.5vh;
-    margin-left: 18rem;
-    margin-top: -23rem;
-    left:16.7vh;
-    bottom: 8vh;
-    transform-origin: bottom; 
-    /*opacity: .99;*/
+    margin-left: 7rem;
+    transform-origin: bottom;
 }
 
 .red_arrow {
     width: 1vh;
     height: 5.5vh;
-    margin-left: 18rem;
-    margin-top: -23rem;
-    left:16.7vh;
-    bottom: 8vh;
+    margin-left: 7rem;
     transform-origin: bottom;
-    /*opacity: .99;*/
 }
 
 .black_circle {
     width: 2.5vh;
     height: 1.4vh;
-    margin-left: 17.2rem;
-    margin-top: -21.5rem;
-    left:17.3rem;
-    bottom: 8.7rem;
-    z-index: 20;
-    opacity: 1;
+    margin-top: -2.5rem;
+    margin-left: 6.2rem;
 }
 
 .pm25_dial {
-    width: 25vh;
-    height: 15vh;
-    /*position: absolute;
-    left:2vh;
-    top:3.5vh;*/
-    position: absolute;
-    right: 0;
-    top: 3.4vh;
+    width: 14vh;
+    height: 8vh;
+    padding: 0;
 }
 
 .o3_dial {
-    width: 25vh;
-    height: 15vh;
-    position: absolute;
+    width: 14vh;
+    height: 8vh;
+/*    position: absolute;
     left:42vh;
-    top:3.5vh;
+    top:3.5vh;*/
 }
 
 .pm25_dial_img {
     /*width: 25vh;
     height: 15vh;*/
     width: 14vh;
-    height: 14vh;
+    height: 8vh;
     /*left:2vh;
     top:3.5vh;*/
-    margin-left:11rem;
-    margin-top:-1rem;
+/*    margin-left:11rem;
+    margin-top:-1rem;*/
 }
 
 .o3_dial_img {
@@ -158,11 +141,14 @@
 
 .dial_frame {
     z-index:12;
-    background-color: white;
+    background-color: transparent;
     backface-visibility: visible;
     position: absolute;
-    bottom: 2rem;
-    left: -1rem;
+    width:14vh;
+    height: 14vh;
+    margin-left: 45rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .white_bg {
