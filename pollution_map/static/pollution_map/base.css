@@ -225,6 +225,33 @@
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 }
 
+.down_arrow {
+    z-index: 6;
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    left:46vw;
+    top: 93vh;
+}
+
+.down_arrow:hover {
+    border-radius: 5rem;
+    box-shadow: 0 0 0.4rem 0.4rem #888;
+}
+
+.up_arrow {
+    z-index: 6;
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    left:46vw; 
+}
+
+.up_arrow:hover {
+    border-radius: 5rem;
+    box-shadow: 0 0 0.4rem 0.4rem #888;
+}
+
 
 footer{
     padding: 3vh;
