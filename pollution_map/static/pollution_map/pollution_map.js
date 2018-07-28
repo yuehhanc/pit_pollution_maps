@@ -67,6 +67,8 @@ function o3RadioChecked() {
         newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
         document.getElementById("arrow").appendChild(newArrow);
     }
+    var dial_pic = document.getElementById("dial_pic");
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_blue.png';
     flag = 1;
     addGrids(flag);
 }
@@ -82,6 +84,8 @@ function o3RadioCheckedMobile() {
         newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow_mobile">';
         document.getElementById("arrow_mobile").appendChild(newArrow);
     }
+    var dial_pic = document.getElementById("dial_pic");
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_blue.png';
     flagMobile = 1;
     addGridsMobile(flagMobile);
 }
@@ -101,6 +105,8 @@ function pm25RadioChecked() {
         newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="blue_arrow" id="pm25_arrow">';
         document.getElementById("arrow").appendChild(newArrow);
     }
+    var dial_pic = document.getElementById("dial_pic");
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_red.png';
     flag = 0;
     addGrids(flag);
 }
@@ -116,6 +122,8 @@ function pm25RadioCheckedMobile() {
         newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="red_arrow" id="pm25_arrow_mobile">';
         document.getElementById("arrow_mobile").appendChild(newArrow);
     }
+    var dial_pic = document.getElementById("dial_pic");
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_red.png';
     flagMobile = 0;
     addGridsMobile(flagMobile);
 }
@@ -496,12 +504,27 @@ function searchPoint(event) {
     }
     // map_area.innerHTML = map_area.innerHTML + '<div onclick="searchPoint(event)" style="z-index: 5; border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
     //                       (x-8) + 'px; top: ' + (y-8) + 'px;" id="marker"></div>';
+    ///////////////////////7/27
+    // var newCursor = document.createElement("div");
+    // newCursor.className = "cursor";
+    // newCursor.id = "marker";
+    // newCursor.style.left = (x-8).toString() + "px";
+    // newCursor.style.top = (y-8).toString() + "px";
+    // newCursor.onclick = searchPoint;
+    // map_area.appendChild(newCursor);
     var newCursor = document.createElement("div");
-    newCursor.className = "cursor";
+    newCursor.className = "cursor2";
     newCursor.id = "marker";
     newCursor.style.left = (x-8).toString() + "px";
     newCursor.style.top = (y-8).toString() + "px";
     newCursor.onclick = searchPoint;
+    var p = Math.round(PM025[index]);
+    var o = Math.round(O3[index]);
+    if (flag == 0) {
+        newCursor.innerHTML = p;
+    } else {
+        newCursor.innerHTML = o;
+    }
     map_area.appendChild(newCursor);
 }
 
