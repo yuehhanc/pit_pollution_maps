@@ -169,9 +169,9 @@ function addGrids(flag) {
                 } else if (avg < 15) {
                     multi = 4;
                 } else if (avg < 25) {
-                    multi = 5;
-                } else {
                     multi = 6;
+                } else {
+                    multi = 7;
                 }
             } else {
                 if (avg < 10) {
@@ -245,9 +245,9 @@ function addGridsMobile(flag) {
                 } else if (avg < 15) {
                     multi = 4;
                 } else if (avg < 25) {
-                    multi = 5;
-                } else {
                     multi = 6;
+                } else {
+                    multi = 7;
                 }
             } else {
                 if (avg < 10) {
