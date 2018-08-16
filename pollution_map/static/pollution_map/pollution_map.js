@@ -156,37 +156,37 @@ function addGrids(flag) {
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
             if (flag == 0) {
-                if (avg < (meanPM25-stdPM25)) {
+                if (avg < 3) {
                     multi = 1;
-                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                } else if (avg < 6) {
+                    multi = 1.7;
+                } else if (avg < 8) {
                     multi = 2.5;
-                } else if (avg < (meanPM25-0.25*stdPM25)) {
+                } else if (avg < 10) {
                     multi = 3;
-                } else if (avg < meanPM25) {
+                } else if (avg < 12.5) {
                     multi = 3.5;
-                } else if (avg < (meanPM25+0.25*stdPM25)) {
+                } else if (avg < 15) {
                     multi = 4;
-                } else if (avg < (meanPM25+0.5*stdPM25)) {
-                    multi = 4.5;
-                } else if (avg < (meanPM25+stdPM25)) {
+                } else if (avg < 25) {
                     multi = 5;
                 } else {
                     multi = 6;
                 }
             } else {
-                if (avg < (meanO3-stdO3)) {
+                if (avg < 10) {
                     multi = 1;
-                } else if (avg < (meanO3-0.5*stdO3)) {
+                } else if (avg < 20) {
                     multi = 2.5;
-                } else if (avg < (meanO3-0.25*stdO3)) {
+                } else if (avg < 27.5) {
                     multi = 3;
-                } else if (avg < meanO3) {
+                } else if (avg < 35) {
                     multi = 3.5;
-                } else if (avg < (meanO3+0.25*stdO3)) {
+                } else if (avg < 42.5) {
                     multi = 4;
-                } else if (avg < (meanO3+0.5*stdO3)) {
+                } else if (avg < 50) {
                     multi = 4.5;
-                } else if (avg < (meanO3+stdO3)) {
+                } else if (avg < 60) {
                     multi = 5;
                 } else {
                     multi = 6;
@@ -232,37 +232,37 @@ function addGridsMobile(flag) {
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
             if (flag == 0) {
-                if (avg < (meanPM25-stdPM25)) {
+                if (avg < 3) {
                     multi = 1;
-                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                } else if (avg < 6) {
+                    multi = 1.7;
+                } else if (avg < 8) {
                     multi = 2.5;
-                } else if (avg < (meanPM25-0.25*stdPM25)) {
+                } else if (avg < 10) {
                     multi = 3;
-                } else if (avg < meanPM25) {
+                } else if (avg < 12.5) {
                     multi = 3.5;
-                } else if (avg < (meanPM25+0.25*stdPM25)) {
+                } else if (avg < 15) {
                     multi = 4;
-                } else if (avg < (meanPM25+0.5*stdPM25)) {
-                    multi = 4.5;
-                } else if (avg < (meanPM25+stdPM25)) {
+                } else if (avg < 25) {
                     multi = 5;
                 } else {
                     multi = 6;
                 }
             } else {
-                if (avg < (meanO3-stdO3)) {
+                if (avg < 10) {
                     multi = 1;
-                } else if (avg < (meanO3-0.5*stdO3)) {
+                } else if (avg < 20) {
                     multi = 2.5;
-                } else if (avg < (meanO3-0.25*stdO3)) {
+                } else if (avg < 27.5) {
                     multi = 3;
-                } else if (avg < meanO3) {
+                } else if (avg < 35) {
                     multi = 3.5;
-                } else if (avg < (meanO3+0.25*stdO3)) {
+                } else if (avg < 42.5) {
                     multi = 4;
-                } else if (avg < (meanO3+0.5*stdO3)) {
+                } else if (avg < 50) {
                     multi = 4.5;
-                } else if (avg < (meanO3+stdO3)) {
+                } else if (avg < 60) {
                     multi = 5;
                 } else {
                     multi = 6;
@@ -443,32 +443,36 @@ function searchPoint(event) {
             index = i;
         }
     }
-    // console.log("Client Width: " + map.clientWidth + ", Client Height:" + map.clientHeight);
-    // console.log("CO: " + CO[index]);
-    // console.log("O3: " + O3[index]); //max: 38, min:22, avg: 30, mean: 25.8896573, std=12.2525487
-    // console.log("PM2.5: " + PM025[index]); //max:14, min:2, avg: 8, mean: 9.14702301, std=5.67227436
-    var meanO3 = 25.8896573;
-    var stdO3 = 12.2525487;
-    var meanPM25 = 9.14702301;
-    var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
-    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
-    if (degO3 > 180) {
+    var degO3;
+    if (O3[index] > 70) {
         degO3 = 180;
-    }
-    if (degO3 < 0) {
+    } else if (O3[index] > 50) {
+        degO3 = 135 + (O3[index] - 50)*22.5/10;
+    } else if (O3[index] > 20) {
+        degO3 = 45 + (O3[index] - 20)*90.0/30;
+    } else if (O3[index] > 0) {
+        degO3 = O3[index]*45.0/20;
+    } else {
         degO3 = 0;
     }
-    if (degPM025 > 180) {
+    var degPM025;
+    if (PM025[index] > 50) {
         degPM025 = 180;
-    }
-    if (degPM025 < 0) {
+    } else if (PM025[index] > 25) {
+        degPM025 = 157.5 + (PM025[index] - 25)*22.5/25;
+    } else if (PM025[index] > 15) {
+        degPM025 = 135 + (PM025[index] - 15)*22.5/10;
+    } else if (PM025[index] > 10) {
+        degPM025 = 90 + (PM025[index] - 10)*45.0/5;
+    } else if (PM025[index] > 6){
+        degPM025 = 45 + (PM025[index] - 6)*45.0/4;
+    } else if (PM025[index] > 0) {
+        degPM025 = PM025[index]*45/6.0;
+    } else {
         degPM025 = 0;
     }
-    // console.log("PM25: " + degPM025 + ", " + PM025[index]);
-    // console.log("O3: " + degO3 + ", " + O3[index]);
-    
+
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
@@ -490,10 +494,6 @@ function searchPoint(event) {
         }
     });
 
-    // console.log("Rotate O3: " + rotateO3);
-    // console.log("Rotate PM25: " + rotatePM025);
-    // console.log("O3 deg: " + degO3);
-    // console.log("PM2.5 deg: " + degPM025);
     ////////////////
     prev_degPM025 = degPM025;
     prev_degO3 = degO3;
@@ -502,16 +502,6 @@ function searchPoint(event) {
     if (document.getElementById("marker") != null) {
         document.getElementById("marker").remove();
     }
-    // map_area.innerHTML = map_area.innerHTML + '<div onclick="searchPoint(event)" style="z-index: 5; border-color: orange; border-style: solid; border-width: 6px; width: 1.5vw; height: 1.5vw; z-index: 5; position: absolute; left: ' + 
-    //                       (x-8) + 'px; top: ' + (y-8) + 'px;" id="marker"></div>';
-    ///////////////////////7/27
-    // var newCursor = document.createElement("div");
-    // newCursor.className = "cursor";
-    // newCursor.id = "marker";
-    // newCursor.style.left = (x-8).toString() + "px";
-    // newCursor.style.top = (y-8).toString() + "px";
-    // newCursor.onclick = searchPoint;
-    // map_area.appendChild(newCursor);
     var newCursor = document.createElement("div");
     newCursor.className = "cursor2";
     newCursor.id = "marker";
@@ -549,32 +539,36 @@ function searchPointMobile(event) {
             index = i;
         }
     }
-    // console.log("Client Width: " + map.clientWidth + ", Client Height:" + map.clientHeight);
-    // console.log("CO: " + CO[index]);
-    // console.log("O3: " + O3[index]); //max: 38, min:22, avg: 30, mean: 25.8896573, std=12.2525487
-    // console.log("PM2.5: " + PM025[index]); //max:14, min:2, avg: 8, mean: 9.14702301, std=5.67227436
-    var meanO3 = 25.8896573;
-    var stdO3 = 12.2525487;
-    var meanPM25 = 9.14702301;
-    var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
-    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
-    if (degO3 > 180) {
+    var degO3;
+    if (O3[index] > 70) {
         degO3 = 180;
-    }
-    if (degO3 < 0) {
+    } else if (O3[index] > 50) {
+        degO3 = 135 + (O3[index] - 50)*22.5/10;
+    } else if (O3[index] > 20) {
+        degO3 = 45 + (O3[index] - 20)*90.0/30;
+    } else if (O3[index] > 0) {
+        degO3 = O3[index]*45.0/20;
+    } else {
         degO3 = 0;
     }
-    if (degPM025 > 180) {
+    var degPM025;
+    if (PM025[index] > 50) {
         degPM025 = 180;
-    }
-    if (degPM025 < 0) {
+    } else if (PM025[index] > 25) {
+        degPM025 = 157.5 + (PM025[index] - 25)*22.5/25;
+    } else if (PM025[index] > 15) {
+        degPM025 = 135 + (PM025[index] - 15)*22.5/10;
+    } else if (PM025[index] > 10) {
+        degPM025 = 90 + (PM025[index] - 10)*45.0/5;
+    } else if (PM025[index] > 6){
+        degPM025 = 45 + (PM025[index] - 6)*45.0/4;
+    } else if (PM025[index] > 0) {
+        degPM025 = PM025[index]*45/6.0;
+    } else {
         degPM025 = 0;
     }
-    // console.log("PM25: " + degPM025 + ", " + PM025[index]);
-    // console.log("O3: " + degO3 + ", " + O3[index]);
-    
+
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
