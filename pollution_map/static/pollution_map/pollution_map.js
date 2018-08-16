@@ -177,9 +177,9 @@ function addGrids(flag) {
                 if (avg < 10) {
                     multi = 1;
                 } else if (avg < 20) {
-                    multi = 2.5;
+                    multi = 1.7;
                 } else if (avg < 27.5) {
-                    multi = 3;
+                    multi = 2.5;
                 } else if (avg < 35) {
                     multi = 3.5;
                 } else if (avg < 42.5) {
@@ -187,9 +187,9 @@ function addGrids(flag) {
                 } else if (avg < 50) {
                     multi = 4.5;
                 } else if (avg < 60) {
-                    multi = 5;
-                } else {
                     multi = 6;
+                } else {
+                    multi = 7;
                 }
             }
 
@@ -245,17 +245,17 @@ function addGridsMobile(flag) {
                 } else if (avg < 15) {
                     multi = 4;
                 } else if (avg < 25) {
-                    multi = 5;
-                } else {
                     multi = 6;
+                } else {
+                    multi = 7;
                 }
             } else {
                 if (avg < 10) {
                     multi = 1;
                 } else if (avg < 20) {
-                    multi = 2.5;
+                    multi = 1.7;
                 } else if (avg < 27.5) {
-                    multi = 3;
+                    multi = 2.5;
                 } else if (avg < 35) {
                     multi = 3.5;
                 } else if (avg < 42.5) {
