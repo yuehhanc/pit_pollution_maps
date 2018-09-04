@@ -61,12 +61,12 @@ function o3RadioChecked() {
     if (isPM25Arrow != null) {
         document.getElementById("arrow").innerHTML = "";
     }
-    var isO3Arrow = document.getElementById("o3_arrow");
-    if (isO3Arrow == null) {
-        var newArrow = document.createElement("div");
-        newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
-        document.getElementById("arrow").appendChild(newArrow);
-    }
+    // var isO3Arrow = document.getElementById("o3_arrow");
+    // if (isO3Arrow == null) {
+    //     var newArrow = document.createElement("div");
+    //     newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
+    //     document.getElementById("arrow").appendChild(newArrow);
+    // }
     var dial_pic = document.getElementById("dial_pic");
     dial_pic.src = '/static/pollution_map/images/dial_gradient_blue.png';
     flag = 1;
@@ -99,12 +99,12 @@ function pm25RadioChecked() {
     if (isO3Arrow != null) {
         document.getElementById("arrow").innerHTML = "";
     }
-    var isPM25Arrow = document.getElementById("pm25_arrow");
-    if (isPM25Arrow == null) {
-        var newArrow = document.createElement("div");
-        newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="blue_arrow" id="pm25_arrow">';
-        document.getElementById("arrow").appendChild(newArrow);
-    }
+    // var isPM25Arrow = document.getElementById("pm25_arrow");
+    // if (isPM25Arrow == null) {
+    //     var newArrow = document.createElement("div");
+    //     newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="red_arrow" id="pm25_arrow">';
+    //     document.getElementById("arrow").appendChild(newArrow);
+    // }
     var dial_pic = document.getElementById("dial_pic");
     dial_pic.src = '/static/pollution_map/images/dial_gradient_red.png';
     flag = 0;
@@ -416,6 +416,29 @@ function toLonMobile(x, map) {
 }
 
 function searchPoint(event) {
+    if (flag == 1) {
+        var isPM25Arrow = document.getElementById("pm25_arrow");
+        if (isPM25Arrow != null) {
+            document.getElementById("arrow").innerHTML = "";
+        }
+        var isO3Arrow = document.getElementById("o3_arrow");
+        if (isO3Arrow == null) {
+            var newArrow = document.createElement("div");
+            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
+            document.getElementById("arrow").appendChild(newArrow);
+        }
+    } else if (flag == 0) {
+        var isO3Arrow = document.getElementById("o3_arrow");
+        if (isO3Arrow != null) {
+            document.getElementById("arrow").innerHTML = "";
+        }
+        var isPM25Arrow = document.getElementById("pm25_arrow");
+        if (isPM25Arrow == null) {
+            var newArrow = document.createElement("div");
+            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="red_arrow" id="pm25_arrow">';
+            document.getElementById("arrow").appendChild(newArrow);
+        }
+    }
     var x = event.clientX;
     var y = event.clientY;
     var map = document.getElementById("map");

@@ -110,6 +110,14 @@ def test6(request):
     context = {}
     return render(request, 'pollution_map/test6.html', context)
 
+def test7(request):
+    context = {}
+    return render(request, 'pollution_map/test7.html', context)
+
+def test8(request):
+    context = {}
+    return render(request, 'pollution_map/test8.html', context)
+
 def test_menu(request):
     context = {}
     return render(request, 'pollution_map/test_menu.html', context)
