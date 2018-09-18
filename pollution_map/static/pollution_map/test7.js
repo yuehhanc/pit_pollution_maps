@@ -283,8 +283,8 @@ function searchPoint(event) {
     var meanPM25 = 9.14702301;
     var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
-    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
+    var degO3 = (O3[index] - (meanO3 - 2*stdO3) + 0.5*(O3[index] - meanO3))*180/(4*stdO3);
+    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25)  + 0.5*(PM025[index] - meanPM25) - (PM025[index] - 8 < 1)*0.8)*180/(4*stdPM25);
     if (degO3 > 180) {
         degO3 = 180;
     }
