@@ -21,6 +21,7 @@
                 <table>
                     <tr>
                         <td style="width: 65rem;"><h1 style="text-align: left;">Result</h1></td>
+                        <td><button onclick="location.href='{% url 'clear' %}'" style="width:6rem;height:2rem;">Clear</button></td>
                         <td><button onclick="location.href='{% url 'test_menu' %}'" style="width:6rem;height:2rem;">Back</button></td>
                     </tr>
                 </table>
@@ -33,6 +34,7 @@
                         <tr id="color_dial">
                             {% for item in color_dial %}
                                 ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
                                 <br>
                             {% endfor %}
                             Average: {{color_dial_average}}
@@ -44,6 +46,7 @@
                         <tr id="gray_dial">
                             {% for item in gray_dial %}
                                 ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
                                 <br>
                             {% endfor %}
                             Average: {{gray_dial_average}}
@@ -55,9 +58,22 @@
                         <tr id="no_color_dial">
                             {% for item in no_color_dial %}
                                 ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
                                 <br>
                             {% endfor %}
                             Average: {{no_color_dial_average}}
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Traffic Light</div></tr>
+                        <tr id="traffic_light">
+                            {% for item in traffic_light %}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
+                                <br>
+                            {% endfor %}
+                            Average: {{traffic_light_average}}
                         </tr>
                     </table>
                 </div>
@@ -68,6 +84,7 @@
                         <tr id="color_table">
                             {% for item in color_table %}
                                 ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
                                 <br>
                             {% endfor %}
                             Average: {{color_table_average}}
@@ -79,6 +96,7 @@
                         <tr id="gray_table">
                             {% for item in gray_table %}
                                 ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
                                 <br>
                             {% endfor %}
                             Average: {{gray_table_average}}
@@ -90,9 +108,22 @@
                         <tr id="no_color_table">
                             {% for item in no_color_table %}
                                 ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
                                 <br>
                             {% endfor %}
                             Average: {{no_color_table_average}}
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr><div style="border-color: cyan; border: solid; border-radius: 1rem;">Clear Below Average</div></tr>
+                        <tr id="clear_below_avg">
+                            {% for item in clear_below_avg %}
+                                ID: {{item.entry_id}}, Number of Clicks: {{item.numClicks}}
+                                <button onclick="location.href='{% url 'deleteRecord' item.entry_id %}'" style="width:6rem;height:1.6rem;">Delete</button>
+                                <br>
+                            {% endfor %}
+                            Average: {{clear_below_avg_average}}
                         </tr>
                     </table>
                 </div>

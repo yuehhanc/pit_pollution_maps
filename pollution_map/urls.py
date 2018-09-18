@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^test_menu$', views.test_menu, name='test_menu'),
     url(r'^recordNumClicks$', views.recordNumClicks),
     url(r'^showResult$', views.showResult, name="showResult"),
+    url(r'^deleteRecord/(?P<record_id>[a-z0-9\-]+)$', views.deleteRecord, name='deleteRecord'),
+    url(r'^clear$', views.clear, name='clear'),
 ]

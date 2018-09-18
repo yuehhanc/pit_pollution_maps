@@ -53,7 +53,7 @@ function o3RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_blue.png';
+    dial_pic.src = '/static/pollution_map/images/dial_trafficlight.png';
     flag = 1;
     addGrids(flag);
 }
@@ -70,7 +70,7 @@ function pm25RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_red.png';
+    dial_pic.src = '/static/pollution_map/images/dial_trafficlight.png';
     flag = 0;
     addGrids(flag);
 }
@@ -89,57 +89,90 @@ function addGrids(flag) {
             gridVals[j][i] = avg;
             // console.log(j + "," + i + "GridVal: " + gridVals[j][i]);
             // console.log("avg: " + avg);
-            var multi = 1;
+            var red = 0;
+            var green = 0;
+            var blue = 0;
             var meanO3 = 25.8896573;
             var stdO3 = 12.2525487;
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
-                    multi = 1;
+                    red = 0;
+                    green = 150;
+                    blue = 0;
                 } else if (avg < (meanPM25-0.5*stdPM25)) {
-                    multi = 2.5;
+                    red = 0;
+                    green = 255;
+                    blue = 0;
                 } else if (avg < (meanPM25-0.25*stdPM25)) {
-                    multi = 3;
+                    red = 255;
+                    green = 255;
+                    blue = 0;
                 } else if (avg < meanPM25) {
-                    multi = 3.5;
+                    red = 255;
+                    green = 215;
+                    blue = 0;
                 } else if (avg < (meanPM25+0.25*stdPM25)) {
-                    multi = 4;
+                    red = 255;
+                    green = 165;
+                    blue = 0;
                 } else if (avg < (meanPM25+0.5*stdPM25)) {
-                    multi = 4.5;
+                    red = 255;
+                    green = 130;
+                    blue = 0;
                 } else if (avg < (meanPM25+stdPM25)) {
-                    multi = 5;
+                    red = 255;
+                    green = 110;
+                    blue = 0;
                 } else {
-                    multi = 6;
+                    red = 255;
+                    green = 0;
+                    blue = 0;
                 }
             } else {
                 if (avg < (meanO3-stdO3)) {
-                    multi = 1;
+                    red = 0;
+                    green = 150;
+                    blue = 0;
                 } else if (avg < (meanO3-0.5*stdO3)) {
-                    multi = 2.5;
+                    red = 0;
+                    green = 255;
+                    blue = 0;
                 } else if (avg < (meanO3-0.25*stdO3)) {
-                    multi = 3;
+                    red = 255;
+                    green = 255;
+                    blue = 0;
                 } else if (avg < meanO3) {
-                    multi = 3.5;
+                    red = 255;
+                    green = 215;
+                    blue = 0;
                 } else if (avg < (meanO3+0.25*stdO3)) {
-                    multi = 4;
+                    red = 255;
+                    green = 165;
+                    blue = 0;
                 } else if (avg < (meanO3+0.5*stdO3)) {
-                    multi = 4.5;
+                    red = 255;
+                    green = 130;
+                    blue = 0;
                 } else if (avg < (meanO3+stdO3)) {
-                    multi = 5;
+                    red = 255;
+                    green = 110;
+                    blue = 0;
                 } else {
-                    multi = 6;
+                    red = 255;
+                    green = 0;
+                    blue = 0;
                 }
             }
 
-            var trans = 0.1*multi;
             newGrid.className = "layer";
             newGrid.style.left = x.toString() + "vw";
             newGrid.style.top = y.toString() + "vh";
             if (flag == 0) {
-                newGrid.style.background = "rgba(255,0,0," + trans.toString() +")";
+                newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() + "," + blue.toString() + "," + "0.6)";
             } else {
-                newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
+                newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() +"," + blue.toString() + "," + "0.6)";
             }
             newGrid.onclick = searchPoint;
             map_area.appendChild(newGrid);
@@ -213,7 +246,7 @@ function searchPoint(event) {
         var isO3Arrow = document.getElementById("o3_arrow");
         if (isO3Arrow == null) {
             var newArrow = document.createElement("div");
-            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
+            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/black_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
             document.getElementById("arrow").appendChild(newArrow);
         }
     } else if (flag == 0) {
@@ -224,7 +257,7 @@ function searchPoint(event) {
         var isPM25Arrow = document.getElementById("pm25_arrow");
         if (isPM25Arrow == null) {
             var newArrow = document.createElement("div");
-            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="red_arrow" id="pm25_arrow">';
+            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/black_arrow.png" + '" class="red_arrow" id="pm25_arrow">';
             document.getElementById("arrow").appendChild(newArrow);
         }
     }
@@ -290,7 +323,7 @@ function searchPoint(event) {
         document.getElementById("marker").remove();
     }
     var newCursor = document.createElement("div");
-    newCursor.className = "cursor2";
+    newCursor.className = "cursor3";
     newCursor.id = "marker";
     newCursor.style.left = (x-8).toString() + "px";
     newCursor.style.top = (y-8).toString() + "px";
@@ -332,7 +365,7 @@ function saveNumClicks() {
 
     req.open("POST", "/pollution_map/recordNumClicks", true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    req.send("numClicks="+numClicks+"&category="+"Color+Dial"+"&csrfmiddlewaretoken="+getCSRFToken());
+    req.send("numClicks="+numClicks+"&category="+"traffic_light"+"&csrfmiddlewaretoken="+getCSRFToken());
     console.log("number clicks: " + numClicks);
 }
 

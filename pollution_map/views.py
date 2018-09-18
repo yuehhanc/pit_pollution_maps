@@ -219,7 +219,47 @@ def showResult(request):
     except:
         pass
 
+    try:
+        context['traffic_light'] = Entry.objects.filter(category="traffic_light")
+        count = 0
+        summ = 0
+        for item in context['traffic_light']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['traffic_light_average'] = summ/count
+    except:
+        pass
+
+    try:
+        context['clear_below_avg'] = Entry.objects.filter(category="clear_below_avg")
+        count = 0
+        summ = 0
+        for item in context['clear_below_avg']:
+            summ += item.numClicks
+            count+=1
+        if count == 0:
+            count = 1
+        context['clear_below_avg_average'] = summ/count
+    except:
+        pass
+
     return render(request, 'pollution_map/result.html', context)
 
 
+def deleteRecord(request, record_id):
+    try:
+        record = Entry.objects.get(entry_id=record_id)
+        record.delete()
+    except:
+        pass
+    return showResult(request)
+
+def clear(request):
+    try:
+        Entry.objects.all().delete()
+    except:
+        pass
+    return showResult(request)
 
