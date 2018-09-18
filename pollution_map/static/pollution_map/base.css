@@ -209,6 +209,19 @@
     color: white;
 }
 
+.cursor3 {
+    z-index: 5;
+    border-color: black;
+    border-style: solid;
+    border-width: 6px;
+    background-color: black;
+    text-align: center;
+    width: 2.5vw;
+    height: 2.5vw;
+    position: absolute;
+    color: white;
+}
+
 .menu_btn {
     width: 30vw;
     box-shadow: 2px 3px;
