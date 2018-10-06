@@ -545,9 +545,9 @@ function searchPoint(event) {
     var blue_cali = 0;
     if (PM025[index] > meanPM25) red_cali = 10;
     if (O3[index] >= (meanO3-0.5*stdO3)) blue_cali = 10;
-    if (O3[index] >= (meanO3-0.25*stdO3)) blue_cali = 15;
-    if (O3[index] > meanO3) blue_cali = 20;
-    if (O3[index] > (meanO3+0.5*stdO3)) blue_cali = 25;
+    if (O3[index] >= (meanO3-0.25*stdO3)) blue_cali += 10;
+    if (O3[index] > meanO3) blue_cali += 10;
+    if (O3[index] > (meanO3+0.5*stdO3)) blue_cali += 5;
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
