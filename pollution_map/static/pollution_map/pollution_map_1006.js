@@ -180,17 +180,17 @@ function addGrids(flag) {
                 } else if (avg < (meanO3-0.5*stdO3)) {
                     multi = 0;
                 } else if (avg < (meanO3-0.25*stdO3)) {
-                    multi = 2;
+                    multi = 1;
                 } else if (avg < meanO3) {
-                    multi = 3;
+                    multi = 2;
                 } else if (avg < (meanO3+0.25*stdO3)) {
-                    multi = 3.5;
+                    multi = 2.5;
                 } else if (avg < (meanO3+0.5*stdO3)) {
-                    multi = 4;
+                    multi = 3;
                 } else if (avg < (meanO3+stdO3)) {
-                    multi = 4.5;
+                    multi = 3.5;
                 } else {
-                    multi = 5;
+                    multi = 4;
                 }
             }
 
