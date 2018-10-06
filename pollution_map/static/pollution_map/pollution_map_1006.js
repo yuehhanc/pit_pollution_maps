@@ -155,43 +155,82 @@ function addGrids(flag) {
             var stdO3 = 12.2525487;
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
+
             if (flag == 0) {
-                if (avg < 3) {
+                if (avg < (meanPM25-stdPM25)) {
+                    multi = 0;
+                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                    multi = 0;
+                } else if (avg < (meanPM25-0.25*stdPM25)) {
                     multi = 1;
-                } else if (avg < 6) {
-                    multi = 1.7;
-                } else if (avg < 8) {
-                    multi = 2.5;
-                } else if (avg < 10) {
+                } else if (avg < meanPM25) {
+                    multi = 2;
+                } else if (avg < (meanPM25+0.25*stdPM25)) {
                     multi = 3;
-                } else if (avg < 12.5) {
+                } else if (avg < (meanPM25+0.5*stdPM25)) {
                     multi = 3.5;
-                } else if (avg < 15) {
+                } else if (avg < (meanPM25+stdPM25)) {
                     multi = 4;
-                } else if (avg < 25) {
-                    multi = 6;
                 } else {
-                    multi = 7;
+                    multi = 4.5;
                 }
             } else {
-                if (avg < 10) {
-                    multi = 1;
-                } else if (avg < 20) {
-                    multi = 1.4;
-                } else if (avg < 27.5) {
-                    multi = 1.8;
-                } else if (avg < 35) {
-                    multi = 2.1;
-                } else if (avg < 42.5) {
-                    multi = 2.5;
-                } else if (avg < 50) {
+                if (avg < (meanO3-stdO3)) {
+                    multi = 0;
+                } else if (avg < (meanO3-0.5*stdO3)) {
+                    multi = 0;
+                } else if (avg < (meanO3-0.25*stdO3)) {
+                    multi = 2;
+                } else if (avg < meanO3) {
+                    multi = 3;
+                } else if (avg < (meanO3+0.25*stdO3)) {
                     multi = 3.5;
-                } else if (avg < 60) {
-                    multi = 5;
+                } else if (avg < (meanO3+0.5*stdO3)) {
+                    multi = 4;
+                } else if (avg < (meanO3+stdO3)) {
+                    multi = 4.5;
                 } else {
-                    multi = 6;
+                    multi = 5;
                 }
             }
+
+            // if (flag == 0) {
+            //     if (avg < 3) {
+            //         multi = 1;
+            //     } else if (avg < 6) {
+            //         multi = 1.7;
+            //     } else if (avg < 8) {
+            //         multi = 2.5;
+            //     } else if (avg < 10) {
+            //         multi = 3;
+            //     } else if (avg < 12.5) {
+            //         multi = 3.5;
+            //     } else if (avg < 15) {
+            //         multi = 4;
+            //     } else if (avg < 25) {
+            //         multi = 6;
+            //     } else {
+            //         multi = 7;
+            //     }
+            // } else {
+            //     if (avg < 10) {
+            //         multi = 1;
+            //     } else if (avg < 20) {
+            //         multi = 1.4;
+            //     } else if (avg < 27.5) {
+            //         multi = 1.8;
+            //     } else if (avg < 35) {
+            //         multi = 2.1;
+            //     } else if (avg < 42.5) {
+            //         multi = 2.5;
+            //     } else if (avg < 50) {
+            //         multi = 3.5;
+            //     } else if (avg < 60) {
+            //         multi = 5;
+            //     } else {
+            //         multi = 6;
+            //     }
+            // }
 
             var trans = 0.1*multi;
             newGrid.className = "layer";
@@ -231,38 +270,39 @@ function addGridsMobile(flag) {
             var stdO3 = 12.2525487;
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
+
             if (flag == 0) {
-                if (avg < 3) {
-                    multi = 1;
-                } else if (avg < 6) {
-                    multi = 1.7;
-                } else if (avg < 8) {
-                    multi = 2.5;
-                } else if (avg < 10) {
+                if (avg < (meanPM25-stdPM25)) {
+                    multi = 0;
+                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                    multi = 0;
+                } else if (avg < (meanPM25-0.25*stdPM25)) {
                     multi = 3;
-                } else if (avg < 12.5) {
+                } else if (avg < meanPM25) {
                     multi = 3.5;
-                } else if (avg < 15) {
+                } else if (avg < (meanPM25+0.25*stdPM25)) {
                     multi = 4;
-                } else if (avg < 25) {
-                    multi = 6;
+                } else if (avg < (meanPM25+0.5*stdPM25)) {
+                    multi = 4.5;
+                } else if (avg < (meanPM25+stdPM25)) {
+                    multi = 5;
                 } else {
-                    multi = 7;
+                    multi = 6;
                 }
             } else {
-                if (avg < 10) {
-                    multi = 1;
-                } else if (avg < 20) {
-                    multi = 1.4;
-                } else if (avg < 27.5) {
-                    multi = 1.8;
-                } else if (avg < 35) {
-                    multi = 2.1;
-                } else if (avg < 42.5) {
-                    multi = 2.5;
-                } else if (avg < 50) {
+                if (avg < (meanO3-stdO3)) {
+                    multi = 0;
+                } else if (avg < (meanO3-0.5*stdO3)) {
+                    multi = 0;
+                } else if (avg < (meanO3-0.25*stdO3)) {
+                    multi = 3;
+                } else if (avg < meanO3) {
                     multi = 3.5;
-                } else if (avg < 60) {
+                } else if (avg < (meanO3+0.25*stdO3)) {
+                    multi = 4;
+                } else if (avg < (meanO3+0.5*stdO3)) {
+                    multi = 4.5;
+                } else if (avg < (meanO3+stdO3)) {
                     multi = 5;
                 } else {
                     multi = 6;
@@ -495,13 +535,23 @@ function searchPoint(event) {
     } else {
         degPM025 = 0;
     }
-
+    
+    //Calibration
+    var meanO3 = 25.8896573;
+    var stdO3 = 12.2525487;
+    var meanPM25 = 9.14702301;
+    var stdPM25 = 5.67227436;
+    var red_cali = 0;
+    var blue_cali = 0;
+    if (PM025[index] > meanPM25) red_cali = 10;
+    if (O3[index] > meanO3) blue_cali = 10;
+    if (O3[index] > (meanO3+0.5*stdO3)) blue_cali = 20;
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
         step: function(now) {
             $("#o3_arrow").css({
-                transform: 'rotate(' + (now - 90) + 'deg)'
+                transform: 'rotate(' + (now - 90 + blue_cali) + 'deg)'
             });
         }
     });
@@ -512,7 +562,7 @@ function searchPoint(event) {
             // you can use the `now` paramter which contains the current
             // animation-position (`0` up to `angle`)
             $("#pm25_arrow").css({
-                transform: 'rotate(' + (now - 90) + 'deg)'
+                transform: 'rotate(' + (now - 90 + red_cali) + 'deg)'
             });
         }
     });
