@@ -544,6 +544,7 @@ function searchPoint(event) {
     var red_cali = 0;
     var blue_cali = 0;
     if (PM025[index] > meanPM25) red_cali = 10;
+    if (O3[index] > (meanO3-0.25*stdO3)) blue_cali = 15;
     if (O3[index] > meanO3) blue_cali = 15;
     if (O3[index] > (meanO3+0.5*stdO3)) blue_cali = 20;
     // aminate rotation
