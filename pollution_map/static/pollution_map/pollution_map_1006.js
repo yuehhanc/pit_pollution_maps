@@ -464,7 +464,7 @@ function searchPoint(event) {
         var isO3Arrow = document.getElementById("o3_arrow");
         if (isO3Arrow == null) {
             var newArrow = document.createElement("div");
-            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
+            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/black_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
             document.getElementById("arrow").appendChild(newArrow);
         }
     } else if (flag == 0) {
@@ -475,7 +475,7 @@ function searchPoint(event) {
         var isPM25Arrow = document.getElementById("pm25_arrow");
         if (isPM25Arrow == null) {
             var newArrow = document.createElement("div");
-            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="red_arrow" id="pm25_arrow">';
+            newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/black_arrow.png" + '" class="red_arrow" id="pm25_arrow">';
             document.getElementById("arrow").appendChild(newArrow);
         }
     }
