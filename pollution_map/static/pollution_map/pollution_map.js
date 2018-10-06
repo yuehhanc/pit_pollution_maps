@@ -68,7 +68,7 @@ function o3RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_blue.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_blue.png';
     flag = 1;
     addGrids(flag);
 }
@@ -85,7 +85,7 @@ function o3RadioCheckedMobile() {
         document.getElementById("arrow_mobile").appendChild(newArrow);
     }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_blue.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_blue.png';
     flagMobile = 1;
     addGridsMobile(flagMobile);
 }
@@ -106,7 +106,7 @@ function pm25RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_red.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_red.png';
     flag = 0;
     addGrids(flag);
 }
@@ -123,7 +123,7 @@ function pm25RadioCheckedMobile() {
         document.getElementById("arrow_mobile").appendChild(newArrow);
     }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_red.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_red.png';
     flagMobile = 0;
     addGridsMobile(flagMobile);
 }
