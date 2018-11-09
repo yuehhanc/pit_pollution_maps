@@ -42,32 +42,36 @@ function processData(allText) {
 }
 
 function o3RadioChecked() {
-    var tb_avg = document.getElementById("tb_avg");
-    tb_avg.innerHTML = 30;
-    var displayer = document.getElementById("displayer");
-    displayer.innerHTML = 30;
-    var tb_hazard = document.getElementById("tb_hazard");
-    tb_hazard.innerHTML = 55;
-    var tb_bar = document.getElementById("tb_bar");
-    tb_bar.style = "background-image: url(/static/pollution_map/images/blue_bar.png); background-size: cover;"
+    var acpt = document.getElementById("acceptable");
+    acpt.innerHTML = "0-20";
+    var concern = document.getElementById("concern");
+    concern.innerHTML = "20-50";
+    var unhealthy = document.getElementById("unhealthy");
+    unhealthy.innerHTML = "50+";
+    var tb_bar_concern = document.getElementById("tb_bar_concern");
+    tb_bar_concern.src = "/static/pollution_map/images/blue_concern.png"
+    var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
+    tb_bar_unhealthy.src = "/static/pollution_map/images/blue_unhealthy.png"
     flag = 1;
-    var tb_title = document.getElementById("tb_title");
-    tb_title.innerHTML = 'O3';
+    // var tb_title = document.getElementById("tb_title");
+    // tb_title.innerHTML = 'O3';
     addGrids(flag);
 }
 
 function pm25RadioChecked() {
-    var tb_avg = document.getElementById("tb_avg");
-    tb_avg.innerHTML = 8;
-    var displayer = document.getElementById("displayer");
-    displayer.innerHTML = 8;
-    var tb_hazard = document.getElementById("tb_hazard");
-    tb_hazard.innerHTML = 19;
-    var tb_bar = document.getElementById("tb_bar");
-    tb_bar.style = "background-image: url(/static/pollution_map/images/red_bar.png); background-size: cover;"
+    var acpt = document.getElementById("acceptable");
+    acpt.innerHTML = "0-6";
+    var concern = document.getElementById("concern");
+    concern.innerHTML = "7-15";
+    var unhealthy = document.getElementById("unhealthy");
+    unhealthy.innerHTML = "15+";
+    var tb_bar_concern = document.getElementById("tb_bar_concern");
+    tb_bar_concern.src = "/static/pollution_map/images/red_concern.png"
+    var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
+    tb_bar_unhealthy.src = "/static/pollution_map/images/red_unhealthy.png"
     flag = 0;
-    var tb_title = document.getElementById("tb_title");
-    tb_title.innerHTML = 'PM 2.5';
+    // var tb_title = document.getElementById("tb_title");
+    // tb_title.innerHTML = 'PM 2.5';
     addGrids(flag);
 }
 
