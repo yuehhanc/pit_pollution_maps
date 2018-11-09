@@ -51,10 +51,10 @@ function o3RadioChecked() {
     var tb_bar_concern = document.getElementById("tb_bar_concern");
     tb_bar_concern.src = "/static/pollution_map/images/blue_concern.png"
     var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
-    tb_bar_unhealthy.src = "/static/pollution_map/images/blue_unhealthy.png"
+    tb_bar_unhealthy.src = "/static/pollution_map/images/blue_unhealthy.png";
+    var displayer = document.getElementById('displayer');
+    displayer.innerHTML = "";
     flag = 1;
-    // var tb_title = document.getElementById("tb_title");
-    // tb_title.innerHTML = 'O3';
     addGrids(flag);
 }
 
@@ -68,10 +68,10 @@ function pm25RadioChecked() {
     var tb_bar_concern = document.getElementById("tb_bar_concern");
     tb_bar_concern.src = "/static/pollution_map/images/red_concern.png"
     var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
-    tb_bar_unhealthy.src = "/static/pollution_map/images/red_unhealthy.png"
+    tb_bar_unhealthy.src = "/static/pollution_map/images/red_unhealthy.png";
+    var displayer = document.getElementById('displayer');
+    displayer.innerHTML = "";
     flag = 0;
-    // var tb_title = document.getElementById("tb_title");
-    // tb_title.innerHTML = 'PM 2.5';
     addGrids(flag);
 }
 
