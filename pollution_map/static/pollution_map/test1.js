@@ -311,7 +311,7 @@ function getCSRFToken() {
 
         }
     }
-    var csrf = Cookies.get('csrftoken');
+    var csrf = $('meta[name="csrf-token"]').attr('content');
     return csrf;
     // console.log("csrf=");
     // console.log("unknown");
