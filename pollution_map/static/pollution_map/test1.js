@@ -305,6 +305,7 @@ function getCSRFToken() {
     for (var i = 0; i < cookies.length; i++) {
         if (cookies[i].startsWith("csrftoken=")) {
             return cookies[i].substring("csrftoken=".length, cookies[i].length);
+
         }
     }
     return "unknown";
@@ -317,9 +318,11 @@ function saveNumClicks() {
         if (req.status != 200) return;
         var response = JSON.parse(req.responseText);
     }
-
+    console.log("I");
     req.open("POST", "/pollution_map/recordNumClicks", true);
+    console.log("II");
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    console.log("III");
     req.send("numClicks="+numClicks+"&category="+"Color+Dial"+"&csrfmiddlewaretoken="+getCSRFToken());
     console.log("number clicks: " + numClicks);
 }
