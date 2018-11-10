@@ -304,6 +304,8 @@ function getCSRFToken() {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
         if (cookies[i].startsWith("csrftoken=")) {
+            console.log("csrf=");
+            console.log(cookies[i].substring("csrftoken=".length, cookies[i].length));
             return cookies[i].substring("csrftoken=".length, cookies[i].length);
 
         }
@@ -331,4 +333,4 @@ window.onbeforeunload= function() {
     saveNumClicks();
 }
 
-// window.setInterval(saveNumClicks, 5000);
+window.setInterval(saveNumClicks, 5000);
