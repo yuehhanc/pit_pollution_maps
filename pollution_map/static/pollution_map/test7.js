@@ -52,8 +52,8 @@ function o3RadioChecked() {
     //     newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow">';
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
-    var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_trafficlight.png';
+    // var dial_pic = document.getElementById("dial_pic");
+    // dial_pic.src = '/static/pollution_map/images/dial_trafficlight.png';
     flag = 1;
     addGrids(flag);
 }
@@ -69,8 +69,8 @@ function pm25RadioChecked() {
     //     newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="blue_arrow" id="pm25_arrow">';
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
-    var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_trafficlight.png';
+    // var dial_pic = document.getElementById("dial_pic");
+    // dial_pic.src = '/static/pollution_map/images/dial_trafficlight.png';
     flag = 0;
     addGrids(flag);
 }
