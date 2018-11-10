@@ -311,9 +311,11 @@ function getCSRFToken() {
 
         }
     }
-    console.log("csrf=");
-    console.log("unknown");
-    return "unknown";
+    var csrf = Cookies.get('csrftoken');
+    return csrf;
+    // console.log("csrf=");
+    // console.log("unknown");
+    // return "unknown";
 }
 
 function saveNumClicks() {
