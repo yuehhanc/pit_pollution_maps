@@ -327,7 +327,7 @@ function saveNumClicks() {
         var response = JSON.parse(req.responseText);
     }
     console.log("I");
-    req.open("POST", "/pollution_map/recordNumClicks", true);
+    req.open("GET", "/pollution_map/recordNumClicks", true);
     console.log("II");
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     console.log("III");
