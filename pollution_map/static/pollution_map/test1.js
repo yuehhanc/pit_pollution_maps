@@ -302,6 +302,7 @@ function detectMobile() {
 
 function getCSRFToken() {
     var cookies = document.cookie.split(";");
+    console.log(cookies);
     for (var i = 0; i < cookies.length; i++) {
         if (cookies[i].startsWith("csrftoken=")) {
             console.log("csrf=");
@@ -310,6 +311,8 @@ function getCSRFToken() {
 
         }
     }
+    console.log("csrf=");
+    console.log("unknown");
     return "unknown";
 }
 
