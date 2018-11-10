@@ -312,6 +312,7 @@ function getCSRFToken() {
         }
     }
     var csrf = $('meta[name="csrf-token"]').attr('content');
+    console.log(csrf);
     return csrf;
     // console.log("csrf=");
     // console.log("unknown");
