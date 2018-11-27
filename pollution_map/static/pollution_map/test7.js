@@ -96,10 +96,11 @@ function addGrids(flag) {
             var stdO3 = 12.2525487;
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
+            avg = Math.round(avg);
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
                     red = 0;
-                    green = 150;
+                    green = 255;//150
                     blue = 0;
                 } else if (avg < (meanPM25-0.5*stdPM25)) {
                     red = 0;
@@ -133,7 +134,7 @@ function addGrids(flag) {
             } else {
                 if (avg < (meanO3-stdO3)) {
                     red = 0;
-                    green = 150;
+                    green = 255;//150
                     blue = 0;
                 } else if (avg < (meanO3-0.5*stdO3)) {
                     red = 0;
@@ -175,6 +176,7 @@ function addGrids(flag) {
                 newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() +"," + blue.toString() + "," + "0.6)";
             }
             newGrid.onclick = searchPoint;
+            newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">';
             map_area.appendChild(newGrid);
         }
     }
@@ -278,39 +280,90 @@ function searchPoint(event) {
             index = i;
         }
     }
+
+    var innerHTML = event.target.innerHTML;
+    var count = 0;
+    var val = "";
+    for (var i = innerHTML.length-1; i >=0; i--) {
+        // console.log(innerHTML.charAt(i));
+        if (count == 1) {
+            val = innerHTML.charAt(i) + val;
+        }
+        if (innerHTML.charAt(i) == '"') {
+            count++;
+            if (count == 2) {
+                break;
+            }
+        }
+    }
+    var value = parseInt(val.substring(1));
+
     var meanO3 = 25.8896573;
     var stdO3 = 12.2525487;
     var meanPM25 = 9.14702301;
     var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - (meanO3 - 2*stdO3) + 0.5*(O3[index] - meanO3))*180/(4*stdO3);
-    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25)  + 0.5*(PM025[index] - meanPM25) - (PM025[index] - 8 < 1)*0.8 + (PM025[index] - 4 < 0.7)*0.8)*180/(4*stdPM25);
-    if (degO3 > 180) {
+    var degO3;
+    if (value > 70) {
         degO3 = 180;
-    }
-    if (degO3 < 0) {
+    } else if (value > 50) {
+        degO3 = 135 + (value - 50)*22.5/10;
+    } else if (value > 20) {
+        degO3 = 45 + (value - 20)*90.0/30;
+    } else if (value > 0) {
+        degO3 = value*45.0/20;
+    } else {
         degO3 = 0;
     }
-    if (degPM025 > 180) {
+    var degPM025;
+    if (value > 50) {
         degPM025 = 180;
-    }
-    if (degPM025 < 0) {
+    } else if (value > 25) {
+        degPM025 = 157.5 + (value - 25)*22.5/25;
+    } else if (value > 15) {
+        degPM025 = 135 + (value - 15)*22.5/10;
+    } else if (value > 10) {
+        degPM025 = 90 + (value - 10)*45.0/5;
+    } else if (value > 6){
+        degPM025 = 45 + (value - 6)*45.0/4;
+    } else if (value > 0) {
+        degPM025 = value*45/6.0;
+    } else {
         degPM025 = 0;
     }
-
+    
+    //Calibration
+    var meanO3 = 25.8896573;
+    var stdO3 = 12.2525487;
+    var meanPM25 = 9.14702301;
+    var stdPM25 = 5.67227436;
+    var red_cali = 0;
+    var blue_cali = 0;
+    if (value > meanPM25) red_cali = 10;
+    if (value < meanPM25-0.5*stdPM25) {
+        red_cali = -5;
+    }
+    if (value>= (meanO3-0.5*stdO3)) blue_cali = 10;
+    if (value >= (meanO3-0.25*stdO3)) blue_cali += 10;
+    if (value > meanO3) blue_cali += 10;
+    if (value > (meanO3+0.5*stdO3)) blue_cali += 5;
+    // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
         step: function(now) {
             $("#o3_arrow").css({
-                transform: 'rotate(' + (now - 90) + 'deg)'
+                transform: 'rotate(' + (now - 90 + blue_cali) + 'deg)'
             });
         }
     });
     $({deg: prev_degPM025}).animate({deg: degPM025}, {
         duration: 200,
         step: function(now) {
+            // in the step-callback (that is fired each step of the animation),
+            // you can use the `now` paramter which contains the current
+            // animation-position (`0` up to `angle`)
             $("#pm25_arrow").css({
-                transform: 'rotate(' + (now - 90) + 'deg)'
+                transform: 'rotate(' + (now - 90 + red_cali) + 'deg)'
             });
         }
     });
@@ -327,13 +380,13 @@ function searchPoint(event) {
     newCursor.id = "marker";
     newCursor.style.left = (x-8).toString() + "px";
     newCursor.style.top = (y-8).toString() + "px";
-    newCursor.onclick = searchPoint;
+    // newCursor.onclick = searchPoint;
     var p = Math.round(PM025[index]);
     var o = Math.round(O3[index]);
     if (flag == 0) {
-        newCursor.innerHTML = p;
+        newCursor.innerHTML = value;
     } else {
-        newCursor.innerHTML = o;
+        newCursor.innerHTML = value;
     }
     map_area.appendChild(newCursor);
     numClicks++;

@@ -94,6 +94,7 @@ function addGrids(flag) {
             var stdO3 = 12.2525487;
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
+            avg = Math.round(avg);
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
                     multi = 1;
@@ -142,6 +143,7 @@ function addGrids(flag) {
                 newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
             }
             newGrid.onclick = searchPoint;
+            newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">';
             map_area.appendChild(newGrid);
         }
     }
@@ -242,12 +244,29 @@ function searchPoint(event) {
         degPM025 = 0;
     }
 
+    var innerHTML = event.target.innerHTML;
+    var count = 0;
+    var val = "";
+    for (var i = innerHTML.length-1; i >=0; i--) {
+        // console.log(innerHTML.charAt(i));
+        if (count == 1) {
+            val = innerHTML.charAt(i) + val;
+        }
+        if (innerHTML.charAt(i) == '"') {
+            count++;
+            if (count == 2) {
+                break;
+            }
+        }
+    }
+    var value = parseInt(val.substring(1));
+
     if (flag == 1) {
         var displayer = document.getElementById("displayer");
-        displayer.innerHTML = Math.round(O3[index]);
+        displayer.innerHTML = Math.round(value);
     } else {
         var displayer = document.getElementById("displayer");
-        displayer.innerHTML = Math.round(PM025[index]);
+        displayer.innerHTML = Math.round(value);
     }
 
     prev_degPM025 = degPM025;
@@ -262,13 +281,13 @@ function searchPoint(event) {
     newCursor.id = "marker";
     newCursor.style.left = (x-8).toString() + "px";
     newCursor.style.top = (y-8).toString() + "px";
-    newCursor.onclick = searchPoint;
+    // newCursor.onclick = searchPoint;
     var p = Math.round(PM025[index]);
     var o = Math.round(O3[index]);
     if (flag == 0) {
-        newCursor.innerHTML = p;
+        newCursor.innerHTML = value;
     } else {
-        newCursor.innerHTML = o;
+        newCursor.innerHTML = value;
     }
     map_area.appendChild(newCursor);
     numClicks++;

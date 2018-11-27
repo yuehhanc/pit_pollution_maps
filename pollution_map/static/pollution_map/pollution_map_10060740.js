@@ -68,7 +68,7 @@ function o3RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_blue.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_1126_blue.png';
     flag = 1;
     addGrids(flag);
 }
@@ -85,7 +85,7 @@ function o3RadioCheckedMobile() {
         document.getElementById("arrow_mobile").appendChild(newArrow);
     }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_blue.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_1126_red.png';
     flagMobile = 1;
     addGridsMobile(flagMobile);
 }
@@ -242,6 +242,7 @@ function addGrids(flag) {
                 newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
             }
             newGrid.onclick = searchPoint;
+            newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">';
             map_area.appendChild(newGrid);
         }
     }
@@ -319,6 +320,7 @@ function addGridsMobile(flag) {
                 newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
             }
             newGrid.onclick = searchPointMobile;
+            newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">'
             map_area.appendChild(newGrid);
         }
     }
@@ -507,31 +509,48 @@ function searchPoint(event) {
         }
     }
 
+    var innerHTML = event.target.innerHTML;
+    var count = 0;
+    var val = "";
+    for (var i = innerHTML.length-1; i >=0; i--) {
+        // console.log(innerHTML.charAt(i));
+        if (count == 1) {
+            val = innerHTML.charAt(i) + val;
+        }
+        if (innerHTML.charAt(i) == '"') {
+            count++;
+            if (count == 2) {
+                break;
+            }
+        }
+    }
+    var value = parseInt(val.substring(1));
+
     var degO3;
-    if (O3[index] > 70) {
+    if (value > 70) {
         degO3 = 180;
-    } else if (O3[index] > 50) {
-        degO3 = 135 + (O3[index] - 50)*22.5/10;
-    } else if (O3[index] > 20) {
-        degO3 = 45 + (O3[index] - 20)*90.0/30;
-    } else if (O3[index] > 0) {
-        degO3 = O3[index]*45.0/20;
+    } else if (value > 50) {
+        degO3 = 135 + (value - 50)*22.5/10;
+    } else if (value > 20) {
+        degO3 = 45 + (value - 20)*90.0/30;
+    } else if (value > 0) {
+        degO3 = value*45.0/20;
     } else {
         degO3 = 0;
     }
     var degPM025;
-    if (PM025[index] > 50) {
+    if (value > 50) {
         degPM025 = 180;
-    } else if (PM025[index] > 25) {
-        degPM025 = 157.5 + (PM025[index] - 25)*22.5/25;
-    } else if (PM025[index] > 15) {
-        degPM025 = 135 + (PM025[index] - 15)*22.5/10;
-    } else if (PM025[index] > 10) {
-        degPM025 = 90 + (PM025[index] - 10)*45.0/5;
-    } else if (PM025[index] > 6){
-        degPM025 = 45 + (PM025[index] - 6)*45.0/4;
-    } else if (PM025[index] > 0) {
-        degPM025 = PM025[index]*45/6.0;
+    } else if (value > 25) {
+        degPM025 = 157.5 + (value - 25)*22.5/25;
+    } else if (value > 15) {
+        degPM025 = 135 + (value - 15)*22.5/10;
+    } else if (value > 10) {
+        degPM025 = 90 + (value - 10)*45.0/5;
+    } else if (value > 6){
+        degPM025 = 45 + (value - 6)*45.0/4;
+    } else if (value > 0) {
+        degPM025 = value*45/6.0;
     } else {
         degPM025 = 0;
     }
@@ -543,11 +562,11 @@ function searchPoint(event) {
     var stdPM25 = 5.67227436;
     var red_cali = 0;
     var blue_cali = 0;
-    if (PM025[index] > meanPM25) red_cali = 10;
-    if (O3[index] >= (meanO3-0.5*stdO3)) blue_cali = 10;
-    if (O3[index] >= (meanO3-0.25*stdO3)) blue_cali += 10;
-    if (O3[index] > meanO3) blue_cali += 10;
-    if (O3[index] > (meanO3+0.5*stdO3)) blue_cali += 5;
+    if (value > meanPM25) red_cali = 10;
+    if (value>= (meanO3-0.5*stdO3)) blue_cali = 10;
+    if (value >= (meanO3-0.25*stdO3)) blue_cali += 10;
+    if (value > meanO3) blue_cali += 10;
+    if (value > (meanO3+0.5*stdO3)) blue_cali += 5;
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
@@ -582,13 +601,13 @@ function searchPoint(event) {
     newCursor.id = "marker";
     newCursor.style.left = (x-8).toString() + "px";
     newCursor.style.top = (y-8).toString() + "px";
-    newCursor.onclick = searchPoint;
+    // newCursor.onclick = searchPoint;
     var p = Math.round(PM025[index]);
     var o = Math.round(O3[index]);
     if (flag == 0) {
-        newCursor.innerHTML = p;
+        newCursor.innerHTML = value;
     } else {
-        newCursor.innerHTML = o;
+        newCursor.innerHTML = value;
     }
     map_area.appendChild(newCursor);
 }
