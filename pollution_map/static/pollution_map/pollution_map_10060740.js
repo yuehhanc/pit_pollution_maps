@@ -186,7 +186,7 @@ function addGrids(flag) {
                 } else if (avg < (meanO3+0.25*stdO3)) {
                     multi = 2.5;
                 } else if (avg < (meanO3+0.5*stdO3)) {
-                    multi = 3;
+                    multi = 2.5;
                 } else if (avg < (meanO3+stdO3)) {
                     multi = 3.5;
                 } else {
