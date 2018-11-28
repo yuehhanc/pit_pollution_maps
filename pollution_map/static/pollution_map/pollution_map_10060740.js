@@ -156,6 +156,8 @@ function addGrids(flag) {
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
 
+
+            avg = Math.round(avg);
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
                     multi = 0;
