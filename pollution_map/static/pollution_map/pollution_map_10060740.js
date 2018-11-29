@@ -170,7 +170,7 @@ function addGrids(flag) {
                 } else if (avg < (meanPM25+0.5*stdPM25)) {
                     multi = 3.5;
                 } else if (avg < (meanPM25+2*stdPM25)) {
-                    multi = 6;
+                    multi = 6.5;
                 } else {
                     multi = 7;
                 }
