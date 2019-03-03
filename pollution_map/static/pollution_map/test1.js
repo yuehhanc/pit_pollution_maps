@@ -67,7 +67,7 @@ var index4Avg = 0;
 function addGrids(flag) {
     var map = document.getElementById("map");
     var map_area = document.getElementById("map_area");
-    map_area.innerHTML = '<img src="/static/pollution_map/images/new_routes.png" onclick="searchPoint(event)" class="map" id="map">';
+    map_area.innerHTML = '<img src="/static/pollution_map/images/4_routes.png" onclick="searchPoint(event)" class="map" id="map">';
     for (var i = 0; i < 100; i += 4) {
         for (var j = 0; j < 84; j += 6) {
             var newGrid = document.createElement("div");
