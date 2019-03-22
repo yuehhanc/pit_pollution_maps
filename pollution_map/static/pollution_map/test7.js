@@ -100,70 +100,70 @@ function addGrids(flag) {
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
                     red = 0;
-                    green = 255;//150
+                    green = 143;
                     blue = 0;
                 } else if (avg < (meanPM25-0.5*stdPM25)) {
                     red = 0;
-                    green = 255;
+                    green = 143;
                     blue = 0;
                 } else if (avg < (meanPM25-0.25*stdPM25)) {
-                    red = 255;
-                    green = 255;
-                    blue = 0;
+                    red = 238;
+                    green = 251;
+                    blue = 74;
                 } else if (avg < meanPM25) {
-                    red = 255;
-                    green = 215;
-                    blue = 0;
+                    red = 248;
+                    green = 239;
+                    blue = 25;
                 } else if (avg < (meanPM25+0.25*stdPM25)) {
-                    red = 255;
-                    green = 165;
+                    red = 248;
+                    green = 213;
                     blue = 0;
                 } else if (avg < (meanPM25+0.5*stdPM25)) {
                     red = 255;
-                    green = 130;
+                    green = 147;
                     blue = 0;
                 } else if (avg < (meanPM25+stdPM25)) {
-                    red = 255;
-                    green = 110;
-                    blue = 0;
+                    red = 238;
+                    green = 65;
+                    blue = 12;
                 } else {
-                    red = 255;
-                    green = 0;
-                    blue = 0;
+                    red = 238;
+                    green = 34;
+                    blue = 12;
                 }
             } else {
                 if (avg < (meanO3-stdO3)) {
                     red = 0;
-                    green = 255;//150
+                    green = 143;
                     blue = 0;
                 } else if (avg < (meanO3-0.5*stdO3)) {
                     red = 0;
-                    green = 255;
+                    green = 143;
                     blue = 0;
                 } else if (avg < (meanO3-0.25*stdO3)) {
-                    red = 255;
-                    green = 255;
-                    blue = 0;
+                    red = 238;
+                    green = 251;
+                    blue = 74;
                 } else if (avg < meanO3) {
-                    red = 255;
-                    green = 215;
-                    blue = 0;
+                    red = 248;
+                    green = 239;
+                    blue = 25;
                 } else if (avg < (meanO3+0.25*stdO3)) {
-                    red = 255;
-                    green = 165;
+                    red = 248;
+                    green = 213;
                     blue = 0;
                 } else if (avg < (meanO3+0.5*stdO3)) {
                     red = 255;
-                    green = 130;
+                    green = 147;
                     blue = 0;
                 } else if (avg < (meanO3+stdO3)) {
-                    red = 255;
-                    green = 110;
-                    blue = 0;
+                    red = 238;
+                    green = 65;
+                    blue = 12;
                 } else {
-                    red = 255;
-                    green = 0;
-                    blue = 0;
+                    red = 238;
+                    green = 34;
+                    blue = 12;
                 }
             }
 
@@ -171,9 +171,9 @@ function addGrids(flag) {
             newGrid.style.left = x.toString() + "vw";
             newGrid.style.top = y.toString() + "vh";
             if (flag == 0) {
-                newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() + "," + blue.toString() + "," + "0.6)";
+                newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() + "," + blue.toString() + "," + "0.7)";
             } else {
-                newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() +"," + blue.toString() + "," + "0.6)";
+                newGrid.style.background = "rgba(" + red.toString() +"," + green.toString() +"," + blue.toString() + "," + "0.7)";
             }
             newGrid.onclick = searchPoint;
             newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">';
@@ -339,14 +339,15 @@ function searchPoint(event) {
     var stdPM25 = 5.67227436;
     var red_cali = 0;
     var blue_cali = 0;
+    if (value < meanPM25 - 0.5*stdPM25) red_cali = -5;
     if (value > meanPM25) red_cali = 10;
-    if (value < meanPM25-0.5*stdPM25) {
-        red_cali = -5;
-    }
-    if (value>= (meanO3-0.5*stdO3)) blue_cali = 10;
-    if (value >= (meanO3-0.25*stdO3)) blue_cali += 10;
-    if (value > meanO3) blue_cali += 10;
-    if (value > (meanO3+0.5*stdO3)) blue_cali += 5;
+    if (value > meanPM25 + 0.25*stdPM25) red_cali = 25;
+    if (value > meanPM25 + 0.5*stdPM25) red_cali = 35;
+    if (value >= (meanO3-0.5*stdO3)) blue_cali = 5;
+    if (value >= (meanO3-0.25*stdO3)) blue_cali = 15;
+    if (value >= meanO3) blue_cali = 35;
+    if (value >= (meanO3+0.25*stdO3)) blue_cali = 50;
+    if (value > (meanO3+0.5*stdO3)) blue_cali = 55;
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
