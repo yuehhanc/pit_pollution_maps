@@ -136,11 +136,7 @@ function addGrids(flag) {
     //gcd(1440, 675) = 45
     var map = document.getElementById("map");
     var map_area = document.getElementById("map_area");
-    if (isClairton == 1) {
-        map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map_clairton.png" onclick="searchPoint(event)" class="map" id="map">';
-    } else {
-        map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map.png" onclick="searchPoint(event)" class="map" id="map">';
-    }
+    map_area.innerHTML = '<img src="/static/pollution_map/images/4_routes.png" onclick="searchPoint(event)" class="map" id="map">';
     for (var i = 0; i < 100; i += 4) {
         for (var j = 0; j < 84; j += 6) {
             var newGrid = document.createElement("div");
