@@ -573,6 +573,7 @@ function searchPoint(event) {
     if (value >= meanO3) blue_cali = 35;
     if (value >= (meanO3+0.25*stdO3)) blue_cali = 50;
     if (value > (meanO3+0.5*stdO3)) blue_cali = 55;
+    if (value > (meanO3+0.5*stdO3)) blue_cali = 65;
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,
