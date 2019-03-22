@@ -22,7 +22,7 @@ for (var i = 0; i < 76; i++) {
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "/static/pollution_map/Interpolated_Map.csv?q=" + Math.random(),
+        url: "/static/pollution_map/Interpolated_Map_sample.csv?q=" + Math.random(),
         dataType: "text",
         success: function(data) {
             processData(data);
