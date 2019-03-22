@@ -136,7 +136,11 @@ function addGrids(flag) {
     //gcd(1440, 675) = 45
     var map = document.getElementById("map");
     var map_area = document.getElementById("map_area");
-    map_area.innerHTML = '<img src="/static/pollution_map/images/4_routes.png" onclick="searchPoint(event)" class="map" id="map">';
+    if (isClairton == 1) {
+        map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map_clairton.png" onclick="searchPoint(event)" class="map" id="map">';
+    } else {
+        map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map.png" onclick="searchPoint(event)" class="map" id="map">';
+    }
     for (var i = 0; i < 100; i += 4) {
         for (var j = 0; j < 84; j += 6) {
             var newGrid = document.createElement("div");
@@ -165,8 +169,10 @@ function addGrids(flag) {
                     multi = 2;
                 } else if (avg < (meanPM25+0.5*stdPM25)) {
                     multi = 3.5;
-                } else if (avg < (meanPM25+2.2*stdPM25)) {
+                } else if (avg < (meanPM25+1*stdPM25)) {
                     multi = 5;
+                } else if (avg < (meanPM25+2*stdPM25)) {
+                    multi = 6;
                 } else {
                     multi = 7;
                 }
@@ -558,11 +564,9 @@ function searchPoint(event) {
     var stdPM25 = 5.67227436;
     var red_cali = 0;
     var blue_cali = 0;
-    //Testing
     if (value < meanPM25 - 0.5*stdPM25) red_cali = -5;
-    if (value > meanPM25) red_cali = 10;
-    if (value > meanPM25 + 0.25*stdPM25) red_cali = 25;
-    if (value > meanPM25 + 0.5*stdPM25) red_cali = 35;
+    if (value > meanPM25) red_cali = 5;
+    if (value > meanPM25 + 0.5*stdPM25) red_cali = 15;
     if (value >= (meanO3-0.5*stdO3)) blue_cali = 5;
     if (value >= (meanO3-0.25*stdO3)) blue_cali = 15;
     if (value >= meanO3) blue_cali = 35;
