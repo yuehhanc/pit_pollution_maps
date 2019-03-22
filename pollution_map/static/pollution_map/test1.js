@@ -68,26 +68,9 @@ function o3RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_1126_blue.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_blue_test.png';
     flag = 1;
     addGrids(flag);
-}
-
-function o3RadioCheckedMobile() {
-    var isPM25Arrow = document.getElementById("pm25_arrow_mobile");
-    if (isPM25Arrow != null) {
-        document.getElementById("arrow_mobile").innerHTML = "";
-    }
-    var isO3Arrow = document.getElementById("o3_arrow_mobile");
-    if (isO3Arrow == null) {
-        var newArrow = document.createElement("div");
-        newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/blue_arrow.png" + '" class="blue_arrow" id="o3_arrow_mobile">';
-        document.getElementById("arrow_mobile").appendChild(newArrow);
-    }
-    var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_1126_red.png';
-    flagMobile = 1;
-    addGridsMobile(flagMobile);
 }
 
 function pm25RadioChecked() {
@@ -106,26 +89,9 @@ function pm25RadioChecked() {
     //     document.getElementById("arrow").appendChild(newArrow);
     // }
     var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_red.png';
+    dial_pic.src = '/static/pollution_map/images/dial_gradient_red_test.png';
     flag = 0;
     addGrids(flag);
-}
-
-function pm25RadioCheckedMobile() {
-    var isPM25Arrow = document.getElementById("o3_arrow_mobile");
-    if (isPM25Arrow != null) {
-        document.getElementById("arrow_mobile").innerHTML = "";
-    }
-    var isO3Arrow = document.getElementById("pm25_arrow_mobile");
-    if (isO3Arrow == null) {
-        var newArrow = document.createElement("div");
-        newArrow.innerHTML = '<img src="' + "/static/pollution_map/images/red_arrow.png" + '" class="red_arrow" id="pm25_arrow_mobile">';
-        document.getElementById("arrow_mobile").appendChild(newArrow);
-    }
-    var dial_pic = document.getElementById("dial_pic");
-    dial_pic.src = '/static/pollution_map/images/dial_gradient_1006_words_red.png';
-    flagMobile = 0;
-    addGridsMobile(flagMobile);
 }
 
 var index4Avg = 0;
@@ -155,14 +121,12 @@ function addGrids(flag) {
             var stdO3 = 12.2525487;
             var meanPM25 = 9.14702301;
             var stdPM25 = 5.67227436;
-
-
             avg = Math.round(avg);
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
                     multi = 0;
                 } else if (avg < (meanPM25-0.5*stdPM25)) {
-                    multi = 0;
+                    multi = 0.5;
                 } else if (avg < (meanPM25-0.25*stdPM25)) {
                     multi = 1;
                 } else if (avg < meanPM25) {
@@ -180,7 +144,7 @@ function addGrids(flag) {
                 if (avg < (meanO3-stdO3)) {
                     multi = 0;
                 } else if (avg < (meanO3-0.5*stdO3)) {
-                    multi = 0;
+                    multi = 0.5;
                 } else if (avg < (meanO3-0.25*stdO3)) {
                     multi = 1;
                 } else if (avg < meanO3) {

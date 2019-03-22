@@ -48,10 +48,12 @@ function o3RadioChecked() {
     concern.innerHTML = "20-50";
     var unhealthy = document.getElementById("unhealthy");
     unhealthy.innerHTML = "50+";
+    var tb_bar_acceptable = document.getElementById("tb_bar_acceptable");
+    tb_bar_acceptable.src = "/static/pollution_map/images/blue_bar_1.png"
     var tb_bar_concern = document.getElementById("tb_bar_concern");
-    tb_bar_concern.src = "/static/pollution_map/images/blue_concern.png"
+    tb_bar_concern.src = "/static/pollution_map/images/blue_bar_2.png"
     var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
-    tb_bar_unhealthy.src = "/static/pollution_map/images/blue_unhealthy.png";
+    tb_bar_unhealthy.src = "/static/pollution_map/images/blue_bar_3.png";
     var displayer = document.getElementById('displayer');
     displayer.innerHTML = "";
     flag = 1;
@@ -65,10 +67,12 @@ function pm25RadioChecked() {
     concern.innerHTML = "7-15";
     var unhealthy = document.getElementById("unhealthy");
     unhealthy.innerHTML = "15+";
+    var tb_bar_acceptable = document.getElementById("tb_bar_acceptable");
+    tb_bar_acceptable.src = "/static/pollution_map/images/red_bar_1.png"
     var tb_bar_concern = document.getElementById("tb_bar_concern");
-    tb_bar_concern.src = "/static/pollution_map/images/red_concern.png"
+    tb_bar_concern.src = "/static/pollution_map/images/red_bar_2.png"
     var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
-    tb_bar_unhealthy.src = "/static/pollution_map/images/red_unhealthy.png";
+    tb_bar_unhealthy.src = "/static/pollution_map/images/red_bar_3.png";
     var displayer = document.getElementById('displayer');
     displayer.innerHTML = "";
     flag = 0;
@@ -99,7 +103,7 @@ function addGrids(flag) {
                 if (avg < (meanPM25-stdPM25)) {
                     multi = 0;
                 } else if (avg < (meanPM25-0.5*stdPM25)) {
-                    multi = 0;
+                    multi = 0.5;
                 } else if (avg < (meanPM25-0.25*stdPM25)) {
                     multi = 1;
                 } else if (avg < meanPM25) {
@@ -117,7 +121,7 @@ function addGrids(flag) {
                 if (avg < (meanO3-stdO3)) {
                     multi = 0;
                 } else if (avg < (meanO3-0.5*stdO3)) {
-                    multi = 0;
+                    multi = 0.5;
                 } else if (avg < (meanO3-0.25*stdO3)) {
                     multi = 1;
                 } else if (avg < meanO3) {
