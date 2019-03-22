@@ -196,44 +196,6 @@ function addGrids(flag) {
                 }
             }
 
-            // if (flag == 0) {
-            //     if (avg < 3) {
-            //         multi = 1;
-            //     } else if (avg < 6) {
-            //         multi = 1.7;
-            //     } else if (avg < 8) {
-            //         multi = 2.5;
-            //     } else if (avg < 10) {
-            //         multi = 3;
-            //     } else if (avg < 12.5) {
-            //         multi = 3.5;
-            //     } else if (avg < 15) {
-            //         multi = 4;
-            //     } else if (avg < 25) {
-            //         multi = 6;
-            //     } else {
-            //         multi = 7;
-            //     }
-            // } else {
-            //     if (avg < 10) {
-            //         multi = 1;
-            //     } else if (avg < 20) {
-            //         multi = 1.4;
-            //     } else if (avg < 27.5) {
-            //         multi = 1.8;
-            //     } else if (avg < 35) {
-            //         multi = 2.1;
-            //     } else if (avg < 42.5) {
-            //         multi = 2.5;
-            //     } else if (avg < 50) {
-            //         multi = 3.5;
-            //     } else if (avg < 60) {
-            //         multi = 5;
-            //     } else {
-            //         multi = 6;
-            //     }
-            // }
-
             var trans = 0.1*multi;
             newGrid.className = "layer";
             newGrid.style.left = x.toString() + "vw";
@@ -249,84 +211,6 @@ function addGrids(flag) {
         }
     }
     index4Avg = 0;
-}
-
-var index4AvgMobile = 0;
-function addGridsMobile(flag) {
-    var screenFactor = 1;
-    var startHeight = 24;
-    var map = document.getElementById("map_mobile");
-    var map_area = document.getElementById("map_area_mobile");
-    map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map_mobile.png" onclick="searchPointMobile(event)" class="map mobile" id="map_mobile">';
-    for (var i = 0; i < 100; i += 4) {
-        for (var j = 0; j < 76; j += 4) {
-            var newGrid = document.createElement("div");
-            var x = i;
-            var y = (startHeight + j);
-            var avg = assignAvgMobile(x, y, 0, flag);
-            gridValsMobile[j][i] = avg;
-            // console.log(j + "," + i + "GridVal: " + gridVals[j][i]);
-            // console.log("avg: " + avg);
-            // console.log("flag: " + flag);
-            var multi = 1;
-            var meanO3 = 25.8896573;
-            var stdO3 = 12.2525487;
-            var meanPM25 = 9.14702301;
-            var stdPM25 = 5.67227436;
-
-            if (flag == 0) {
-                if (avg < (meanPM25-stdPM25)) {
-                    multi = 0;
-                } else if (avg < (meanPM25-0.5*stdPM25)) {
-                    multi = 0;
-                } else if (avg < (meanPM25-0.25*stdPM25)) {
-                    multi = 3;
-                } else if (avg < meanPM25) {
-                    multi = 3.5;
-                } else if (avg < (meanPM25+0.25*stdPM25)) {
-                    multi = 4;
-                } else if (avg < (meanPM25+0.5*stdPM25)) {
-                    multi = 4.5;
-                } else if (avg < (meanPM25+stdPM25)) {
-                    multi = 5;
-                } else {
-                    multi = 6;
-                }
-            } else {
-                if (avg < (meanO3-stdO3)) {
-                    multi = 0;
-                } else if (avg < (meanO3-0.5*stdO3)) {
-                    multi = 0;
-                } else if (avg < (meanO3-0.25*stdO3)) {
-                    multi = 3;
-                } else if (avg < meanO3) {
-                    multi = 3.5;
-                } else if (avg < (meanO3+0.25*stdO3)) {
-                    multi = 4;
-                } else if (avg < (meanO3+0.5*stdO3)) {
-                    multi = 4.5;
-                } else if (avg < (meanO3+stdO3)) {
-                    multi = 5;
-                } else {
-                    multi = 6;
-                }
-            }
-
-            var trans = 0.1*multi;
-            newGrid.className = "layer";
-            newGrid.style.left = x.toString() + "vw";
-            newGrid.style.top = (y*screenFactor).toString() + "vh";
-            if (flag == 0) {
-                newGrid.style.background = "rgba(255,0,0," + trans.toString() +")";
-            } else {
-                newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
-            }
-            newGrid.onclick = searchPointMobile;
-            newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">'
-            map_area.appendChild(newGrid);
-        }
-    }
-    index4AvgMobile = 0;
 }
 
 function assignAvg(x, y, index, flag) {

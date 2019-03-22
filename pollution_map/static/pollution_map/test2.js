@@ -97,39 +97,39 @@ function addGrids(flag) {
             avg = Math.round(avg);
             if (flag == 0) {
                 if (avg < (meanPM25-stdPM25)) {
-                    multi = 1;
+                    multi = 0;
                 } else if (avg < (meanPM25-0.5*stdPM25)) {
-                    multi = 2.5;
+                    multi = 0;
                 } else if (avg < (meanPM25-0.25*stdPM25)) {
-                    multi = 3;
+                    multi = 1;
                 } else if (avg < meanPM25) {
-                    multi = 3.5;
-                } else if (avg < (meanPM25+0.25*stdPM25)) {
-                    multi = 4;
+                    multi = 2;
                 } else if (avg < (meanPM25+0.5*stdPM25)) {
-                    multi = 4.5;
-                } else if (avg < (meanPM25+stdPM25)) {
+                    multi = 3.5;
+                } else if (avg < (meanPM25+1*stdPM25)) {
                     multi = 5;
-                } else {
+                } else if (avg < (meanPM25+2*stdPM25)) {
                     multi = 6;
+                } else {
+                    multi = 7;
                 }
             } else {
                 if (avg < (meanO3-stdO3)) {
-                    multi = 1;
+                    multi = 0;
                 } else if (avg < (meanO3-0.5*stdO3)) {
-                    multi = 2.5;
+                    multi = 0;
                 } else if (avg < (meanO3-0.25*stdO3)) {
-                    multi = 3;
+                    multi = 1;
                 } else if (avg < meanO3) {
-                    multi = 3.5;
+                    multi = 1.5;
                 } else if (avg < (meanO3+0.25*stdO3)) {
-                    multi = 4;
+                    multi = 3.5;
                 } else if (avg < (meanO3+0.5*stdO3)) {
-                    multi = 4.5;
+                    multi = 3.5;
                 } else if (avg < (meanO3+stdO3)) {
-                    multi = 5;
+                    multi = 4.5;
                 } else {
-                    multi = 6;
+                    multi = 5;
                 }
             }
 
