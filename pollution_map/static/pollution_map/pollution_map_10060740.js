@@ -567,6 +567,7 @@ function searchPoint(event) {
     if (value < meanPM25 - 0.5*stdPM25) red_cali = -5;
     if (value > meanPM25) red_cali = 5;
     if (value > meanPM25 + 0.5*stdPM25) red_cali = 10;
+    if (value > meanPM25 + 1*stdPM25) red_cali = 15;
     if (value >= (meanO3-0.5*stdO3)) blue_cali = 5;
     if (value >= (meanO3-0.25*stdO3)) blue_cali = 15;
     if (value >= meanO3) blue_cali = 35;
