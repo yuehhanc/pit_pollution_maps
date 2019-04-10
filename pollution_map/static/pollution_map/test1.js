@@ -589,7 +589,7 @@ function goToClairton() {
 function goToPit() {
     isClairton = 0;
     var map_area = document.getElementById("map_area");
-    map_area.innerHTML = '<img src="/static/pollution_map/images/pit_map.png" onclick="searchPoint(event)" class="map" id="map">';
+    map_area.innerHTML = '<img src="/static/pollution_map/images/routes_5.png" onclick="searchPoint(event)" class="map" id="map">';
     addGrids(flag);
     $("#up_arrow").hide();
     $("#down_arrow").show();
