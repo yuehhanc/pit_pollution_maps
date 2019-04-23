@@ -117,18 +117,47 @@ function searchPoint(event) {
     var meanPM25 = 9.14702301;
     var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
-    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
-    if (degO3 > 180) {
+    // var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
+    // var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
+    // if (degO3 > 180) {
+    //     degO3 = 180;
+    // }
+    // if (degO3 < 0) {
+    //     degO3 = 0;
+    // }
+    // if (degPM025 > 180) {
+    //     degPM025 = 180;
+    // }
+    // if (degPM025 < 0) {
+    //     degPM025 = 0;
+    // }
+    var degO3;
+    if (O3[index] >= 70) {
         degO3 = 180;
-    }
-    if (degO3 < 0) {
+    } else if (O3[index] >= 50) {
+        degO3 = 135 + (O3[index] - 50)*22.5/10;
+    } else if (O3[index] >= 20) {
+        degO3 = 45 + (O3[index] - 20)*90.0/30;
+    } else if (O3[index] >= 0) {
+        degO3 = O3[index]*45.0/20;
+    } else {
         degO3 = 0;
     }
-    if (degPM025 > 180) {
+    var degPM025;
+    if (PM025[index] >= 50) {
         degPM025 = 180;
-    }
-    if (degPM025 < 0) {
+    } else if (PM025[index] >= 25) {
+        degPM025 = 157.5 + (PM025[index] - 25)*22.5/25;
+    } else if (PM025[index] >= 15) {
+        degPM025 = 135 + (PM025[index] - 15)*22.5/10;
+    } else if (PM025[index] >= 10) {
+        degPM025 = 90 + (PM025[index] - 10)*45.0/5;
+    } else if (PM025[index] >= 6){
+        degPM025 = 45 + (PM025[index] - 6)*45.0/4 - 2;
+    } else if (PM025[index] >= 0) {
+        degPM025 = PM025[index]*45/6.0 - 5;
+        if (degPM025 < 0) degPM025 = 0;
+    } else {
         degPM025 = 0;
     }
 

@@ -98,31 +98,31 @@ function addGrids(flag) {
             var stdPM25 = 5.67227436;
             avg = Math.round(avg);
             if (flag == 0) {
-                if (avg < (meanPM25-stdPM25)) {
+                if (avg < 3) {
                     red = 0;
                     green = 143;
                     blue = 0;
-                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                } else if (avg < 6) {
                     red = 0;
                     green = 143;
                     blue = 0;
-                } else if (avg < (meanPM25-0.25*stdPM25)) {
+                } else if (avg < 8) {
                     red = 238;
                     green = 251;
                     blue = 74;
-                } else if (avg < meanPM25) {
+                } else if (avg < 10) {
                     red = 248;
                     green = 239;
                     blue = 25;
-                } else if (avg < (meanPM25+0.25*stdPM25)) {
+                } else if (avg < 12.5) {
                     red = 248;
                     green = 213;
                     blue = 0;
-                } else if (avg < (meanPM25+0.5*stdPM25)) {
+                } else if (avg < 15) {
                     red = 255;
                     green = 147;
                     blue = 0;
-                } else if (avg < (meanPM25+stdPM25)) {
+                } else if (avg < 25) {
                     red = 238;
                     green = 65;
                     blue = 12;
@@ -132,31 +132,31 @@ function addGrids(flag) {
                     blue = 12;
                 }
             } else {
-                if (avg < (meanO3-stdO3)) {
+                if (avg < 10) {
                     red = 0;
                     green = 143;
                     blue = 0;
-                } else if (avg < (meanO3-0.5*stdO3)) {
+                } else if (avg < 20) {
                     red = 0;
                     green = 143;
                     blue = 0;
-                } else if (avg < (meanO3-0.25*stdO3)) {
+                } else if (avg < 27.5) {
                     red = 238;
                     green = 251;
                     blue = 74;
-                } else if (avg < meanO3) {
+                } else if (avg < 35) {
                     red = 248;
                     green = 239;
                     blue = 25;
-                } else if (avg < (meanO3+0.25*stdO3)) {
+                } else if (avg < 42.5) {
                     red = 248;
                     green = 213;
                     blue = 0;
-                } else if (avg < (meanO3+0.5*stdO3)) {
+                } else if (avg < 50) {
                     red = 255;
                     green = 147;
                     blue = 0;
-                } else if (avg < (meanO3+stdO3)) {
+                } else if (avg < 60) {
                     red = 238;
                     green = 65;
                     blue = 12;
@@ -304,30 +304,31 @@ function searchPoint(event) {
     var stdPM25 = 5.67227436;
 
     var degO3;
-    if (value > 70) {
+    if (value >= 70) {
         degO3 = 180;
-    } else if (value > 50) {
+    } else if (value >= 50) {
         degO3 = 135 + (value - 50)*22.5/10;
-    } else if (value > 20) {
+    } else if (value >= 20) {
         degO3 = 45 + (value - 20)*90.0/30;
-    } else if (value > 0) {
+    } else if (value >= 0) {
         degO3 = value*45.0/20;
     } else {
         degO3 = 0;
     }
     var degPM025;
-    if (value > 50) {
+    if (value >= 50) {
         degPM025 = 180;
-    } else if (value > 25) {
+    } else if (value >= 25) {
         degPM025 = 157.5 + (value - 25)*22.5/25;
-    } else if (value > 15) {
+    } else if (value >= 15) {
         degPM025 = 135 + (value - 15)*22.5/10;
-    } else if (value > 10) {
+    } else if (value >= 10) {
         degPM025 = 90 + (value - 10)*45.0/5;
-    } else if (value > 6){
-        degPM025 = 45 + (value - 6)*45.0/4;
-    } else if (value > 0) {
-        degPM025 = value*45/6.0;
+    } else if (value >= 6){
+        degPM025 = 45 + (value - 6)*45.0/4 - 2;
+    } else if (value >= 0) {
+        degPM025 = value*45/6.0 - 5;
+        if (degPM025 < 0) degPM025 = 0;
     } else {
         degPM025 = 0;
     }
@@ -339,15 +340,15 @@ function searchPoint(event) {
     var stdPM25 = 5.67227436;
     var red_cali = 0;
     var blue_cali = 0;
-    if (value < meanPM25 - 0.5*stdPM25) red_cali = -5;
-    if (value > meanPM25) red_cali = 10;
-    if (value > meanPM25 + 0.25*stdPM25) red_cali = 25;
-    if (value > meanPM25 + 0.5*stdPM25) red_cali = 35;
-    if (value >= (meanO3-0.5*stdO3)) blue_cali = 5;
-    if (value >= (meanO3-0.25*stdO3)) blue_cali = 15;
-    if (value >= meanO3) blue_cali = 35;
-    if (value >= (meanO3+0.25*stdO3)) blue_cali = 50;
-    if (value > (meanO3+0.5*stdO3)) blue_cali = 55;
+    // if (value < meanPM25 - 0.5*stdPM25) red_cali = -5;
+    // if (value > meanPM25) red_cali = 10;
+    // if (value > meanPM25 + 0.25*stdPM25) red_cali = 25;
+    // if (value > meanPM25 + 0.5*stdPM25) red_cali = 35;
+    // if (value >= (meanO3-0.5*stdO3)) blue_cali = 5;
+    // if (value >= (meanO3-0.25*stdO3)) blue_cali = 15;
+    // if (value >= meanO3) blue_cali = 35;
+    // if (value >= (meanO3+0.25*stdO3)) blue_cali = 50;
+    // if (value > (meanO3+0.5*stdO3)) blue_cali = 55;
     // aminate rotation
     $({deg: prev_degO3}).animate({deg: degO3}, {
         duration: 200,

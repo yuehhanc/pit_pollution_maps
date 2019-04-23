@@ -100,37 +100,37 @@ function addGrids(flag) {
             var stdPM25 = 5.67227436;
             avg = Math.round(avg);
             if (flag == 0) {
-                if (avg < (meanPM25-stdPM25)) {
+                if (avg <= 3) {
                     multi = 0;
-                } else if (avg < (meanPM25-0.5*stdPM25)) {
+                } else if (avg <= 6) {
                     multi = 0.5;
-                } else if (avg < (meanPM25-0.25*stdPM25)) {
+                } else if (avg <= 8) {
                     multi = 1;
-                } else if (avg < meanPM25) {
+                } else if (avg <= 10) {
                     multi = 2;
-                } else if (avg < (meanPM25+0.5*stdPM25)) {
+                } else if (avg <= 12.5) {
                     multi = 3.5;
-                } else if (avg < (meanPM25+1*stdPM25)) {
-                    multi = 4.5;
-                } else if (avg < (meanPM25+2*stdPM25)) {
+                } else if (avg <= 15) {
+                    multi = 5;
+                } else if (avg <= 25) {
                     multi = 6;
                 } else {
                     multi = 7;
                 }
             } else {
-                if (avg < (meanO3-stdO3)) {
+                if (avg <= 10) {
                     multi = 0;
-                } else if (avg < (meanO3-0.5*stdO3)) {
-                    multi = 0.5;
-                } else if (avg < (meanO3-0.25*stdO3)) {
+                } else if (avg <= 20) {
+                    multi = 0;
+                } else if (avg <= 27.5) {
                     multi = 1;
-                } else if (avg < meanO3) {
+                } else if (avg <= 35) {
                     multi = 1.5;
-                } else if (avg < (meanO3+0.25*stdO3)) {
+                } else if (avg <= 42.5) {
                     multi = 2.5;
-                } else if (avg < (meanO3+0.5*stdO3)) {
+                } else if (avg <= 50) {
                     multi = 3.5;
-                } else if (avg < (meanO3+stdO3)) {
+                } else if (avg <= 60) {
                     multi = 4.5;
                 } else {
                     multi = 5;
