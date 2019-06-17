@@ -48,13 +48,6 @@ function o3RadioChecked() {
     concern.innerHTML = "20-50";
     var unhealthy = document.getElementById("unhealthy");
     unhealthy.innerHTML = "50+";
-    var tb_bar_acceptable = document.getElementById("tb_bar_acceptable");
-    tb_bar_acceptable.src = "/static/pollution_map/images/blue_bar_1.png"
-    var tb_bar_concern = document.getElementById("tb_bar_concern");
-    tb_bar_concern.src = "/static/pollution_map/images/blue_bar_2.png"
-    var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
-    tb_bar_unhealthy.src = "/static/pollution_map/images/blue_bar_3.png";
-    var displayer = document.getElementById('displayer');
     displayer.innerHTML = "";
     flag = 1;
     addGrids(flag);
@@ -67,13 +60,6 @@ function pm25RadioChecked() {
     concern.innerHTML = "7-15";
     var unhealthy = document.getElementById("unhealthy");
     unhealthy.innerHTML = "15+";
-    var tb_bar_acceptable = document.getElementById("tb_bar_acceptable");
-    tb_bar_acceptable.src = "/static/pollution_map/images/red_bar_1.png"
-    var tb_bar_concern = document.getElementById("tb_bar_concern");
-    tb_bar_concern.src = "/static/pollution_map/images/red_bar_2.png"
-    var tb_bar_unhealthy = document.getElementById("tb_bar_unhealthy");
-    tb_bar_unhealthy.src = "/static/pollution_map/images/red_bar_3.png";
-    var displayer = document.getElementById('displayer');
     displayer.innerHTML = "";
     flag = 0;
     addGrids(flag);
@@ -83,7 +69,7 @@ var index4Avg = 0;
 function addGrids(flag) {
     var map = document.getElementById("map");
     var map_area = document.getElementById("map_area");
-    map_area.innerHTML = '<img src="/static/pollution_map/images/5_routes_3.png" onclick="searchPoint(event)" class="map" id="map">';
+    map_area.innerHTML = '<img src="/static/pollution_map/images/croppedCtrl.png" onclick="searchPoint(event)" class="map" id="map">';
     for (var i = 0; i < 100; i += 4) {
         for (var j = 0; j < 84; j += 6) {
             var newGrid = document.createElement("div");
@@ -103,7 +89,7 @@ function addGrids(flag) {
                 if (avg <= 3) {
                     multi = 0;
                 } else if (avg <= 6) {
-                    multi = 0.5;
+                    multi = 0;
                 } else if (avg <= 8) {
                     multi = 1;
                 } else if (avg <= 10) {
@@ -142,9 +128,9 @@ function addGrids(flag) {
             newGrid.style.left = x.toString() + "vw";
             newGrid.style.top = y.toString() + "vh";
             if (flag == 0) {
-                newGrid.style.background = "rgba(255,0,0," + trans.toString() +")";
+                newGrid.style.background = "rgba(0,0,0," + trans.toString() +")";
             } else {
-                newGrid.style.background = "rgba(0,0,255," + trans.toString() +")";
+                newGrid.style.background = "rgba(0,0,0," + trans.toString() +")";
             }
             newGrid.onclick = searchPoint;
             newGrid.innerHTML = '<input type="hidden" value="'+Math.round(avg).toString()+'">';
@@ -210,42 +196,7 @@ function toLon(x, map) {
     return -80.12 + (0.29/(1+map.clientWidth))*x;
 }
 
-function searchPoint(event) {
-    var x = event.clientX;
-    var y = event.clientY;
-    var map = document.getElementById("map");
-    var lat = 40.48 - (0.1/(1+map.clientHeight))*(y-129);//+1 to avoid zero division
-    var lon = -80.12 + (0.29/(1+map.clientWidth))*x;
-    console.log("Latitude: " + lat + ", Longitude:" + lon);
-    var dist = 2147483647;
-    var index = 0;
-    for (i = 0; i < latitude.length; i++) {
-        var dX = latitude[i]-lat;
-        var dY = longitude[i]-lon;
-        var curr_dist = dX*dX + dY*dY;
-        if (curr_dist < dist) {
-            dist = curr_dist;
-            index = i;
-        }
-    }
-    var meanO3 = 25.8896573;
-    var stdO3 = 12.2525487;
-    var meanPM25 = 9.14702301;
-    var stdPM25 = 5.67227436;
 
-    var degO3 = (O3[index] - (meanO3 - 2*stdO3))*180/(4*stdO3);
-    var degPM025 =  (PM025[index] - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
-    if (degO3 > 180) {
-        degO3 = 180;
-    }
-    if (degO3 < 0) {
-        degO3 = 0;
-    }
-    if (degPM025 > 180) {
-        degPM025 = 180;
-    }
-    if (degPM025 < 0) {
-        degPM025 = 0;
     }
 
     var innerHTML = event.target.innerHTML;
@@ -265,6 +216,42 @@ function searchPoint(event) {
     }
     var value = parseInt(val.substring(1));
 
+    var meanO3 = 25.8896573;
+    var stdO3 = 12.2525487;
+    var meanPM25 = 9.14702301;
+    var stdPM25 = 5.67227436;
+
+    var degO3 = (value - (meanO3 - 2*stdO3))*180/(4*stdO3);
+    var degPM025 =  (value - (meanPM25 - 2*stdPM25))*180/(4*stdPM25);
+    if (degO3 > 180) {
+        degO3 = 180;
+    }
+    if (degO3 < 0) {
+        degO3 = 0;
+    }
+    if (degPM025 > 180) {
+        degPM025 = 180;
+    }
+    if (degPM025 < 0) {
+        degPM025 = 0;
+    }
+
+    // $({deg: prev_degO3}).animate({deg: degO3}, {
+    //     duration: 200,
+    //     step: function(now) {
+    //         $("#o3_arrow").css({
+    //             transform: 'rotate(' + (now - 90) + 'deg)'
+    //         });
+    //     }
+    // });
+    // $({deg: prev_degPM025}).animate({deg: degPM025}, {
+    //     duration: 200,
+    //     step: function(now) {
+    //         $("#pm25_arrow").css({
+    //             transform: 'rotate(' + (now - 90) + 'deg)'
+    //         });
+    //     }
+    // });
     if (flag == 1) {
         var displayer = document.getElementById("displayer");
         displayer.innerHTML = Math.round(value);
@@ -323,7 +310,7 @@ function saveNumClicks() {
 
     req.open("POST", "/pollution_map/recordNumClicks", true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    req.send("numClicks="+numClicks+"&category="+"Color+Table"+"&csrfmiddlewaretoken="+getCSRFToken());
+    req.send("numClicks="+numClicks+"&category="+"Gray+Table"+"&csrfmiddlewaretoken="+getCSRFToken());
 
 }
 

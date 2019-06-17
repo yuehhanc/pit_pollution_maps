@@ -8,7 +8,7 @@
         <!-- Citation: bootstrat.css library from Bootstrap -->     
         <script src="{% static 'pollution_map/jquery-1.11.1.js' %}" type="text/javascript"></script>
         <script src="{% static 'pollution_map/bootstrap.bundle.js' %}" type="text/javascript"></script>
-        <script src="{% static 'pollution_map/test6.js' %}" type="text/javascript"></script>
+        <script src="{% static 'pollution_map/test4.js' %}" type="text/javascript"></script>
         <link href="{% static 'pollution_map/bootstrap.css' %}" rel="stylesheet" type="text/css">
     
         <link href="{% static 'pollution_map/base.css' %}" rel="stylesheet" type="text/css">
@@ -32,18 +32,28 @@
                 <div class="col-lg-2 dial_frame">
                     <table>
                         <tr>
+                            <td class='table_display'></td>
                             <td class='table_display' style="background-color: lightgray;">Current</td>
                             <td class='table_display' style="background-color: lightgray;" id='displayer'></td>
                         </tr>
                         <tr>
+                            <td class='table_display'>
+                                <img src="/static/pollution_map/images/gray_table.png" height="20rem" width ="60rem" id="tb_bar_acceptable">
+                            </td>
                             <td class='table_display' style="font-size: 0.8rem">Acceptable</td>
                             <td class='table_display' style="font-size: 0.7rem" id='acceptable'>0-6</td>
                         </tr>
                         <tr>
+                            <td class='table_display'>
+                                <img src="/static/pollution_map/images/gray_concern.png" height="20rem" width ="60rem" id="tb_bar_concern">
+                            </td>
                             <td class='table_display' style="font-size: 0.8rem">Concerning</td>
                             <td class='table_display' style="font-size: 0.7rem" id="concern">7-15</td>
                         </tr>
                         <tr>
+                            <td class='table_display'>
+                                <img src="/static/pollution_map/images/gray_unhealthy.png" height="20rem" width="60rem" id="tb_bar_unhealthy">
+                            </td>
                             <td class='table_display' style="font-size: 0.8rem">Unhealthy</td>
                             <td class='table_display' style="font-size: 0.7rem" id='unhealthy'>15+</td>
                         </tr>
@@ -91,7 +101,7 @@
         </div>
         {% block map %}
         <div id="map_area">
-            <img src="{% static 'pollution_map/images/5_routes_3.png' %}" onclick="searchPoint(event)" class="map" id="map">
+            <img src="{% static 'pollution_map/images/croppedCtrl.png' %}" onclick="searchPoint(event)" class="map" id="map">
         </div>
         {% endblock %}
     </body>
