@@ -6,6 +6,7 @@ var PM025 = [];
 var prev_degO3 = 90;
 var prev_degPM025 = 90;
 var flag = 0; // 0: PM2.5, 1: O3
+var numClicks = 0;
 var flagMobile = 0;
 var isClairton = 0;
 
@@ -33,6 +34,7 @@ $(document).ready(function() {
             }
             
         }
+        numClicks
      });
 });
 
@@ -464,6 +466,7 @@ function searchPoint(event) {
         newCursor.innerHTML = value;
     }
     map_area.appendChild(newCursor);
+    numClicks++;
 }
 
 function searchPointMobile(event) {
@@ -618,5 +621,23 @@ window.onload = function() {
             document.getElementById("demo").innerHTML = err.message;
         }
     }
+}
+
+function saveNumClicks() {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (req.readyState != 4) return;
+        if (req.status != 200) return;
+        var response = JSON.parse(req.responseText);
+    }
+
+    req.open("POST", "/pollution_map/recordNumClicks", true);
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    req.send("numClicks="+numClicks+"&category="+"Color+Dial"+"&csrfmiddlewaretoken="+getCSRFToken());
+
+}
+
+window.onbeforeunload= function() {
+    saveNumClicks();
 }
 
