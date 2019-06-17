@@ -32,9 +32,8 @@ $(document).ready(function() {
             } else {
                 addGrids(flag);
             }
-            
+            numClicks = 0;
         }
-        numClicks = 0;
      });
 });
 
