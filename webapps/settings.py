@@ -29,7 +29,7 @@ CELERY_TIMEZONE = 'UTC'
 CELERY_ENABLE_UTC = True
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
-        'task': 'pollution_map.tasks.task_number_one',
+        'task': 'task_number_one',
         'schedule': 5.0
     }
 }
