@@ -20,8 +20,8 @@ import os
 # for relative imports by default.
 
 # Celery settings
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
@@ -30,7 +30,7 @@ CELERY_ENABLE_UTC = True
 CELERY_ALWAYS_EAGER = True
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
-        'task': 'task_number_one',
+        'task': 'pollution_map.tasks.task_number_one',
         'schedule': 5.0
     }
 }
