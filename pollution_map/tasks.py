@@ -1,8 +1,12 @@
 from __future__ import absolute_import, unicode_literals
-from celery import task
-import os, shutil
 
-@task()
+import os
+import shutil
+
+from celery import task
+
+
+@task(name='task_number_one')
 def task_number_one():
     print("It works")
     currFileName = "Interpolated_Map"
