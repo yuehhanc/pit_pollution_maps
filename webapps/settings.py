@@ -20,16 +20,17 @@ import os
 # for relative imports by default.
 
 # Celery settings
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 CELERY_ENABLE_UTC = True
+CELERY_ALWAYS_EAGER = True
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
-        'task': 'pollution_map.tasks.task_number_one',
+        'task': 'task_number_one',
         'schedule': 5.0
     }
 }
@@ -56,7 +57,7 @@ SECRET_KEY = '7#29214%@t#d3co)y=nwk4t4_t5ex4k)3z0lg+qf7#vxyy=w&8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cmusds.pitpollutionmap.tk','13.58.29.214','localhost','www.pghairquality.com']
+ALLOWED_HOSTS = ['cmusds.pitpollutionmap.tk','13.58.29.214','localhost']
 
 
 # Application definition
