@@ -6,7 +6,7 @@ import shutil
 from celery import task
 
 
-@task(name='task_number_one')
+@task()
 def task_number_one():
     print("It works")
     currFileName = "Interpolated_Map"
