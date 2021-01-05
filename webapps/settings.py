@@ -60,7 +60,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['cmusds.pitpollutionmap.tk','13.58.29.214','localhost','www.pghairquality.com','18.188.12.99','52.15.214.185','::ffff:a9fe:a9fe','169.254.169.254', '3.23.92.191']
 
 
-# Application definition
+# Application definition'3.23.92.191'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
