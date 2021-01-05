@@ -57,7 +57,7 @@ SECRET_KEY = '7#29214%@t#d3co)y=nwk4t4_t5ex4k)3z0lg+qf7#vxyy=w&8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cmusds.pitpollutionmap.tk','13.58.29.214','localhost','www.pghairquality.com','18.188.12.99','52.15.214.185','::ffff:a9fe:a9fe','169.254.169.254']
+ALLOWED_HOSTS = ['cmusds.pitpollutionmap.tk','13.58.29.214','localhost','www.pghairquality.com','18.188.12.99','52.15.214.185','::ffff:a9fe:a9fe','169.254.169.254', '3.23.92.191']
 
 
 # Application definition
